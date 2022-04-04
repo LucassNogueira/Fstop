@@ -29,7 +29,7 @@ const Splash = () => {
 
           <div className="flex gap-2 justify-center">
             <Link to="/signup">
-              <button className="  px-2.5 py-1.5 border border-gray-300 w-60 text-xl font-medium rounded text-gray-700 bg-white hover:bg-gray-50 ">
+              <button className=" px-2.5 py-1.5 border border-gray-300 w-60 text-xl font-medium rounded text-gray-700 bg-white hover:bg-gray-50 ">
                 Sign Up
               </button>
             </Link>
