@@ -7,10 +7,14 @@ const SignUp = () => {
   async function handleSignUp(e) {
     e.preventDefault();
     const { email, password } = e.target.elements;
-    await signUp(email.value, password.value).then((userCredential) => {
-      const user = userCredential.user;
-      setCurrentUser(user);
-    });
+    try {
+      await signUp(email.value, password.value).then((userCredential) => {
+        const user = userCredential.user;
+        setCurrentUser(user);
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   }
   return (
     <div>

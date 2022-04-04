@@ -1,13 +1,9 @@
-import React, { useContext, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
-import { AuthProvider } from "../components/Auth";
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
   signOut,
 } from "firebase/auth";
 
@@ -21,6 +17,7 @@ const firebaseConfig = {
 };
 const app = firebase.initializeApp(firebaseConfig);
 const auth = getAuth();
+
 export default app;
 
 export function signUp(email, password) {
@@ -33,15 +30,4 @@ export function login(email, password) {
 
 export function logOut() {
   return signOut(auth);
-}
-
-export function useAuth() {
-  const { currentUser, setCurrentUser } = useContext();
-
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => setCurrentUser(user));
-    return unsub;
-  }, []);
-
-  return currentUser;
 }
