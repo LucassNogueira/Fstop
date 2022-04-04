@@ -12,14 +12,23 @@ const Home = () => {
     <div>
       <h1>Home</h1>
       <p>Would you like to sign out?</p>
-      <button onClick={handleLogout}>Click me to signout!</button>
+      <button
+        className="py-2 px-4 bg-gray-300  rounded-lg shadow-md hover:bg-gray-600"
+        onClick={handleLogout}
+      >
+        Click me to signout!
+      </button>
       <p>Would you like to login?</p>
       <Link to="/login">
-        <button>Click me to Login!</button>
+        <button className="py-2 px-4 bg-gray-300  rounded-lg shadow-md hover:bg-gray-600">
+          Click me to Login!
+        </button>
       </Link>
       <p>Would you like to Signup?</p>
       <Link to="/signup">
-        <button>Click me to SignUp!</button>
+        <button className="py-2 px-4 bg-gray-300  rounded-lg shadow-md hover:bg-gray-600">
+          Click me to SignUp!
+        </button>
       </Link>
     </div>
   );
