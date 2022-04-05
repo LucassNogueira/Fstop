@@ -13,8 +13,8 @@ function App() {
         <AuthProvider>
           <NavBar />
           <Routes>
-            <Route exact path="/" element={<Splash />}></Route>
-            <Route path="/home" element={<HomePage />}></Route>
+            {/* <Route exact path="/" element={<Splash />}></Route> */}
+            <Route exact path="/" element={<HomePage />}></Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signout" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />

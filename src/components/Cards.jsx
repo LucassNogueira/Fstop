@@ -1,14 +1,16 @@
 import React from "react";
-
+import norris from "./media/norris.png";
+import ferrari from "./media/ferrari.png";
+import haas from "./media/haas.png";
 const posts = [
   {
-    title: "You wont believe what Norris is saying!",
+    title: "Norris finally speaks up!",
     href: "#",
     description:
       "Lando Norris has conceded that moods have dipped at McLaren, who sit eighth in the championship ahead of this weekend’s 2022 Australian Grand Prix – but the squad are still motivated to push on and recover.",
     date: "Mar 16, 2022",
     datetime: "2022-03-16",
-    imageUrl: "/media/norris.png",
+    imageUrl: norris,
     readingTime: "6 min",
     author: {
       name: "Roel Aufderehar",
@@ -18,15 +20,13 @@ const posts = [
     },
   },
   {
-    title: "How to use search engine optimization to drive sales",
+    title: "Does Ferrari have what it takes?",
     href: "#",
-    category: { name: "Video", href: "#" },
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis asperiores porro quaerat doloribus, eveniet dolore. Adipisci tempora aut inventore optio animi., tempore temporibus quo laudantium.",
+
+    description: `Ferrari Team Principal Mattia Binotto has acknowledged that while his squad "lost ground" to rivals in previous years, they are now primed for a tough development war as they aim to win their first championship since 2008.`,
     date: "Mar 10, 2020",
     datetime: "2020-03-10",
-    imageUrl:
-      "https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
+    imageUrl: ferrari,
     readingTime: "4 min",
     author: {
       name: "Brenna Goyette",
@@ -36,15 +36,13 @@ const posts = [
     },
   },
   {
-    title: "Improve your customer experience",
+    title: "Magnussen scores big for Haas!",
     href: "#",
-    category: { name: "Case Study", href: "#" },
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.",
+
+    description: `Haas F1 Team Principal Guenther Steiner has spoken about Kevin Magnussen’s improved motivation and maturity after the Dane spent a year out of Formula 1 before returning in 2022 with the rejuvenated squad.`,
     date: "Feb 12, 2020",
     datetime: "2020-02-12",
-    imageUrl:
-      "https://images.unsplash.com/photo-1492724441997-5dc865305da7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80",
+    imageUrl: haas,
     readingTime: "11 min",
     author: {
       name: "Daniela Metz",
@@ -57,6 +55,7 @@ const posts = [
 const Cards = () => {
   return (
     <div className="bg-gray-50 mb-5 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
+      <a name="news"></a>
       {/*remove mb-5 once footer in place*/}
       <div className=" inset-0">
         <div className="bg-white h-1/3 sm:h-2/3" />
@@ -67,8 +66,8 @@ const Cards = () => {
             From the pits
           </h2>
           <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
-            libero labore natus atque, ducimus sed.
+            The latest Formula 1 news, events and reactions. With breaking
+            stories, results, upcoming races and team and driver news.
           </p>
         </div>
         <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">

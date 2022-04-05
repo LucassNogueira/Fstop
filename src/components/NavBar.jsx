@@ -2,21 +2,35 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "./Auth";
 import logo from "./media/logof1.svg";
+import NavItem from "./NavItem";
+import { logOut } from "../firebase/base";
 const NavBar = () => {
-  const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  async function handleLogout() {
+    await logOut();
+    await setCurrentUser(null);
+  }
   return (
-    <nav className="sticky top-0 z-50 flex justify-center gap-4 h-14 bg-gray-50">
-      <Link to="/">
-        <img alt="logo" className="h-9 absolute left-2 top-1" src={logo} />
+    <nav
+      className="sticky top-0 z-50 flex justify-end
+   items-center gap-4 h-14 bg-gray-50"
+    >
+      <Link to={!currentUser ? "/" : "/logged"}>
+        <img alt="logo" className="h-9 absolute left-0 top-3" src={logo} />
       </Link>
-      {/* <Link to="/login">
-        <button>Click me to Login!</button>
-      </Link>
-      <Link to="/signup">
-        <button>Signup</button>
-      </Link> */}
-      <div>Currently Logged in as : {currentUser?.email}</div>
+      <ul className="flex justify-end mr-7 items-center space-x-7">
+        <NavItem content="Home" href={!currentUser ? "/" : "/logged"} />
+        <NavItem content="News" href="#news" />
+        <NavItem content="Profile" href="/profile" />
+        <li>
+          <button
+            className=" text-lg font-semibold list-none"
+            onClick={handleLogout}
+          >
+            Sign Out
+          </button>
+        </li>
+      </ul>
     </nav>
   );
 };

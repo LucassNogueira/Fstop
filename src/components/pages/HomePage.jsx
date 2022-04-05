@@ -4,7 +4,7 @@ import Splash from "../Splash";
 
 const home = () => {
   return (
-    <main className="relative ">
+    <main>
       <Splash />
 
       <Cards />

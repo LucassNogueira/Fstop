@@ -28,26 +28,25 @@ const Splash = () => {
               What are you waiting for?
             </p>
           </h1>
+          {!currentUser ? (
+            <div className="flex gap-2 justify-center">
+              <Link to="/signup">
+                <button className=" px-2.5 py-1.5 border border-gray-300 w-60 text-xl font-medium rounded text-gray-700 bg-white hover:bg-gray-50 ">
+                  Sign Up
+                </button>
+              </Link>
+              <Link to="/login">
+                <button className="px-2.5 py-1.5 border border-gray-300 w-60 text-xl font-medium rounded text-gray-700 bg-white hover:bg-gray-50 ">
+                  Login
+                </button>
+              </Link>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
-      <div className="absolute text-center justify-center w-full top-1/3 ">
-        {!currentUser ? (
-          <div className="flex gap-2 justify-center">
-            <Link to="/signup">
-              <button className=" px-2.5 py-1.5 border border-gray-300 w-60 text-xl font-medium rounded text-gray-700 bg-white hover:bg-gray-50 ">
-                Sign Up
-              </button>
-            </Link>
-            <Link to="/login">
-              <button className="px-2.5 py-1.5 border border-gray-300 w-60 text-xl font-medium rounded text-gray-700 bg-white hover:bg-gray-50 ">
-                Login
-              </button>
-            </Link>
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
+      <div className="absolute text-center justify-center w-full top-1/3 "></div>
     </div>
   );
 };
