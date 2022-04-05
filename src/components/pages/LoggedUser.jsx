@@ -4,12 +4,12 @@ import { AuthContext } from "../Auth";
 import Cards from "../Cards";
 import Splash from "../Splash";
 const LoggedUser = () => {
-  const { currentUser, setCurrentUser, setPending } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   if (currentUser) {
     return (
       <main>
-        <Splash classname="sticky" />
+        <Splash />
         <Cards />
       </main>
     );

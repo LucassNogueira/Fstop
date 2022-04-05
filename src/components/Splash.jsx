@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+// eslint-disable-next-line no-unused-vars
 import axios from "axios";
 import { Link } from "react-router-dom";
 import vidlink from "./media/cropped.mp4";
@@ -20,9 +21,9 @@ const Splash = () => {
     <div>
       {/* <button onClick={() => button()}>Click</button> */}
       <div>
-        <video className="" src={vidlink} autoPlay loop muted />
+        <video className="mt-14" src={vidlink} autoPlay loop muted />
         <div className="absolute text-center justify-center w-full top-1/3 ">
-          <h1 className=" font-bold text-9xl w-full bg-white bg-opacity-60 sm-40 ">
+          <h1 className=" font-bold text-9xl w-full bg-white bg-opacity-60 sm-40">
             PETROL IS IN THE AIR
             <p className="text-6xl font-bold m-4 pb-5 ">
               What are you waiting for?

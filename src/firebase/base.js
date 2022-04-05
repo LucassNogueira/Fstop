@@ -20,8 +20,8 @@ const auth = getAuth();
 
 export default app;
 
-export function signUp(email, password) {
-  return createUserWithEmailAndPassword(auth, email, password);
+export function signUp(email, password, displayName) {
+  return createUserWithEmailAndPassword(auth, email, password, displayName);
 }
 
 export function login(email, password) {

@@ -1,29 +1,47 @@
 import React, { useContext } from "react";
 import { AuthContext } from "./Auth";
 import { signUp } from "../firebase/base";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "./media/logof1.svg";
+import { getAuth, sendEmailVerification, updateProfile } from "firebase/auth";
 const SignUp = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const auth = getAuth();
 
+  // try {
+  //   await signUp(email.value, password.value, displayName.value)
+  //     .then((userCredential) => {
+  //       const user = userCredential.user;
+  //       setCurrentUser(user);
+  //       navigate("/profile");
+  //     })
+  //     .then(
+  //       updateProfile(auth.currentUser, { displayName: displayName.value })
+  //     );
+  // } catch (error) {
+  //   console.log(error.message);
+  // }
   async function handleSignUp(e) {
     e.preventDefault();
     const { email, password, displayName } = e.target.elements;
     try {
-      await signUp(email.value, password.value).then((userCredential) => {
-        const user = userCredential.user;
-        // user
-        //   .updateProfile({
-        //     displayName: displayName.value,
-        //   })
-        //   .then(function () {
-        //     displayName.value = user.displayName;
-        //   });
-        setCurrentUser(user);
-      });
+      await signUp(email.value, password.value, displayName.value).then(
+        (results) => {
+          const user = results.user;
+          setCurrentUser(user);
+        }
+      );
     } catch (error) {
       console.log(error.message);
     }
+    await sendEmailVerification(auth.currentUser).catch((error) =>
+      console.log(error)
+    );
+    await updateProfile(auth.currentUser, {
+      displayName: displayName.value,
+    }).catch((error) => console.log(error));
+    await navigate("/profile");
   }
   return (
     <div className="bg-f1-pic h-screen w-screen fixed top-0 z-[-1] ">

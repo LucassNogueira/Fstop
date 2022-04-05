@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./components/Auth";
-import { Home, SignUp, Login, PrivateRoute, Splash } from "./components/index";
+import { Home, SignUp, Login } from "./components/index";
 import NavBar from "./components/NavBar";
 import HomePage from "./components/pages/HomePage";
 
 import LoggedUser from "./components/pages/LoggedUser";
+import Profile from "./components/pages/Profile";
 function App() {
   return (
     <>
@@ -16,9 +17,10 @@ function App() {
             {/* <Route exact path="/" element={<Splash />}></Route> */}
             <Route exact path="/" element={<HomePage />}></Route>
             <Route path="/login" element={<Login />} />
-            <Route path="/signout" element={<Home />} />
+            {/* <Route path="/signout" element={<Home />} /> */}
             <Route path="/signup" element={<SignUp />} />
-            <Route path={`/logged`} element={<LoggedUser />} />
+            <Route path="/logged" element={<LoggedUser />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
