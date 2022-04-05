@@ -6,7 +6,7 @@ const NavBar = () => {
   const { currentUser } = useContext(AuthContext);
   console.log(currentUser);
   return (
-    <nav className="flex justify-center gap-4 h-10 w-screen bg-white bg-opacity-90">
+    <nav className="sticky top-0 z-50 flex justify-center gap-4 h-14 bg-gray-50">
       <Link to="/">
         <img alt="logo" className="h-9 absolute left-2 top-1" src={logo} />
       </Link>

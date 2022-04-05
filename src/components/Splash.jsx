@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import vidlink from "./media/cropped.mp4";
+import { AuthContext } from "./Auth";
 const Splash = () => {
+  const { currentUser } = useContext(AuthContext);
   //   const button = () => {
   //     axios
   //       .get("https://v1.formula-1.api-sports.io/teams", {
@@ -15,18 +17,21 @@ const Splash = () => {
   //       .catch((error) => console.log(error));
   //   };
   return (
-    <div className="relative ">
+    <div>
       {/* <button onClick={() => button()}>Click</button> */}
-      <div className="fixed top-0 z-[-1] w-full h-screen">
-        <video src={vidlink} autoPlay loop muted />
+      <div>
+        <video className="" src={vidlink} autoPlay loop muted />
         <div className="absolute text-center justify-center w-full top-1/3 ">
-          <h1 className=" font-bold text-9xl w-full bg-white bg-opacity-60 ">
+          <h1 className=" font-bold text-9xl w-full bg-white bg-opacity-60 sm-40 ">
             PETROL IS IN THE AIR
             <p className="text-6xl font-bold m-4 pb-5 ">
               What are you waiting for?
             </p>
           </h1>
-
+        </div>
+      </div>
+      <div className="absolute text-center justify-center w-full top-1/3 ">
+        {!currentUser ? (
           <div className="flex gap-2 justify-center">
             <Link to="/signup">
               <button className=" px-2.5 py-1.5 border border-gray-300 w-60 text-xl font-medium rounded text-gray-700 bg-white hover:bg-gray-50 ">
@@ -39,7 +44,9 @@ const Splash = () => {
               </button>
             </Link>
           </div>
-        </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

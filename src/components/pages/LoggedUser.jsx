@@ -1,21 +1,17 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Auth";
+import Cards from "../Cards";
+import Splash from "../Splash";
 const LoggedUser = () => {
   const { currentUser, setCurrentUser, setPending } = useContext(AuthContext);
   const navigate = useNavigate();
   if (currentUser) {
     return (
-      <div>
-        {/* {JSON.stringify(currentUser)} */}
-        <div className="flex w-full border-2">
-          <input
-            type="text"
-            placeholder="UserName"
-            className="m-auto border-2"
-          />
-        </div>
-      </div>
+      <main>
+        <Splash classname="sticky" />
+        <Cards />
+      </main>
     );
   }
   return navigate("/", { replace: true });
