@@ -6,8 +6,6 @@ const home = () => {
   return (
     <main>
       <Splash />
-
-      <Cards />
     </main>
   );
 };

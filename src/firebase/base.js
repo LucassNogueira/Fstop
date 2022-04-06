@@ -31,3 +31,18 @@ export function login(email, password) {
 export function logOut() {
   return signOut(auth);
 }
+
+export function newDocument(entriesDB, currentUser) {
+  entriesDB
+    .doc(currentUser.uid)
+    .set({
+      uid: currentUser.uid,
+      firstName: "",
+      lastName: "",
+      email: currentUser.email,
+      favDriver: {},
+      favTrack: {},
+      favTeam: {},
+    })
+    .catch((err) => alert(err));
+}

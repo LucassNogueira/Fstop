@@ -1,27 +1,16 @@
 import React, { useContext } from "react";
 import { AuthContext } from "./Auth";
-import { signUp } from "../firebase/base";
+import { signUp, newDocument } from "../firebase/base";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "./media/logof1.svg";
 import { getAuth, sendEmailVerification, updateProfile } from "firebase/auth";
+import firebase from "../firebase/base";
+const entriesDB = firebase.firestore().collection("Users");
 const SignUp = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const auth = getAuth();
 
-  // try {
-  //   await signUp(email.value, password.value, displayName.value)
-  //     .then((userCredential) => {
-  //       const user = userCredential.user;
-  //       setCurrentUser(user);
-  //       navigate("/profile");
-  //     })
-  //     .then(
-  //       updateProfile(auth.currentUser, { displayName: displayName.value })
-  //     );
-  // } catch (error) {
-  //   console.log(error.message);
-  // }
   async function handleSignUp(e) {
     e.preventDefault();
     const { email, password, displayName } = e.target.elements;
@@ -30,6 +19,7 @@ const SignUp = () => {
         (results) => {
           const user = results.user;
           setCurrentUser(user);
+          newDocument(entriesDB, user);
         }
       );
     } catch (error) {
@@ -41,11 +31,10 @@ const SignUp = () => {
     await updateProfile(auth.currentUser, {
       displayName: displayName.value,
     }).catch((error) => console.log(error));
-    await navigate("/profile");
+    navigate("/logged");
   }
   return (
     <div className="bg-f1-pic h-screen w-screen fixed top-0 z-[-1] ">
-      {/* <button onClick={() => console.log(currentUser)}> Check user</button> */}
       <div className="mt-40 h-[55%] rounded-3xl flex items-center justify-center sm:px-6 lg:px-8 bg-gray-400 w-[30%] m-auto bg-opacity-80">
         <div className="space-y-8">
           <div>

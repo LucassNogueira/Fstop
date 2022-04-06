@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "./media/logof1.svg";
 const Login = () => {
   const navigate = useNavigate();
-  const { currentUser, setCurrentUser, setPending } = useContext(AuthContext);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
   async function handleLogin(e) {
     e.preventDefault();
     const { email, password } = e.target.elements;
@@ -13,10 +13,8 @@ const Login = () => {
     try {
       await login(email.value, password.value)
         .then((userCredential) => {
-          setPending(true);
           const user = userCredential.user;
           setCurrentUser(user);
-          setPending(false);
         })
         .catch((error) => {
           console.log(error);
@@ -24,15 +22,11 @@ const Login = () => {
     } catch (error) {
       console.log(error.message);
     }
-  }
-
-  if (currentUser) {
-    return navigate(`/logged`, { replace: true });
+    navigate(`/logged`);
   }
 
   return (
     <div className="bg-log-in h-screen w-screen fixed top-0 z-[-1] ">
-      {/* <button onClick={() => console.log(currentUser)}> Check user</button> */}
       <div className="mt-40 h-[50%] rounded-3xl flex items-center justify-center sm:px-6 lg:px-8 bg-gray-400 w-[30%] m-auto bg-opacity-80">
         <div className="w-10/12 space-y-8">
           <div>
