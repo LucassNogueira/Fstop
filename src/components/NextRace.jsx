@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
 const NextRace = () => {
   const [race, setRace] = useState([]);
 
@@ -24,12 +25,12 @@ const NextRace = () => {
       <div className="flex flex-col  w-full h-full">
         <div className=" w-full" key={displayRace[0]?.id}>
           <h1 className="text-3xl font-semibold text-center pt-4">
-            {displayRace[0]?.competition.name}
+            The next Grand Prix
           </h1>
           <img
             alt={`track:${displayRace[0]?.circuit.name}`}
             src={displayRace[0]?.circuit?.image}
-            className=" m-auto h-[150px]"
+            className=" m-auto mt-28 h-[170px]"
           />
         </div>
       </div>
