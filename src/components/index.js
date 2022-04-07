@@ -1,5 +1,3 @@
-export { default as Home } from "./Home";
-export { default as Login } from "./Login";
+export { default as Login } from "./Login&Register/Login";
 export { default as Splash } from "./Splash";
-export { default as SignUp } from "./SignUp";
-export { default as PrivateRoute } from "./PrivateRoute";
+export { default as SignUp } from "./Login&Register/SignUp";

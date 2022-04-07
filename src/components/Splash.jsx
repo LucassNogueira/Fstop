@@ -1,25 +1,12 @@
 import React, { useContext } from "react";
-// eslint-disable-next-line no-unused-vars
-import axios from "axios";
 import { Link } from "react-router-dom";
 import vidlink from "./media/cropped.mp4";
 import { AuthContext } from "./Auth";
 const Splash = () => {
   const { currentUser } = useContext(AuthContext);
-  //   const button = () => {
-  //     axios
-  //       .get("https://v1.formula-1.api-sports.io/teams", {
-  //         headers: {
-  //           "x-rapidapi-key": process.env.REACT_APP_APP_API_KEY,
-  //           "x-rapidapi-host": "api-formula-1.p.rapidapi.com",
-  //         },
-  //       })
-  //       .then((res) => console.log(res.data))
-  //       .catch((error) => console.log(error));
-  //   };
+
   return (
     <div>
-      {/* <button onClick={() => button()}>Click</button> */}
       <div>
         <video className="mt-14" src={vidlink} autoPlay loop muted />
         <div className="absolute text-center justify-center w-full top-1/3 ">
