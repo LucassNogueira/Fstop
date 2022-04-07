@@ -3,7 +3,7 @@ import axios from "axios";
 
 const NextRace = () => {
   const [race, setRace] = useState([]);
-
+  const [weather, setWeather] = useState([]);
   useEffect(() => {
     axios
       .get("https://v1.formula-1.api-sports.io/races?season=2022&type=race", {
@@ -23,15 +23,26 @@ const NextRace = () => {
   return (
     <>
       <div className="flex flex-col  w-full h-full">
-        <div className=" w-full" key={displayRace[0]?.id}>
+        <div className="text-center w-full" key={displayRace[0]?.id}>
           <h1 className="text-3xl font-semibold text-center pt-4">
-            The next Grand Prix
+            {displayRace[0]?.circuit.name}
           </h1>
           <img
             alt={`track:${displayRace[0]?.circuit.name}`}
             src={displayRace[0]?.circuit?.image}
-            className=" m-auto mt-28 h-[170px]"
+            className=" m-auto mt-5 h-[170px]"
           />
+          <p className="text-2xl font-semibold mt-5">
+            Date: {displayRace[0]?.date.slice(0, 10)}
+          </p>
+          <p className="text-2xl font-semibold mt-5">
+            Total Laps: {displayRace[0]?.laps.total}
+          </p>
+          <p className="text-2xl font-semibold mt-5">
+            Race Distance:{" "}
+            {Number(displayRace[0]?.distance.slice(0, 5) / 1.609).toFixed(2)}{" "}
+            Miles
+          </p>
         </div>
       </div>
     </>
