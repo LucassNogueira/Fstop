@@ -5,7 +5,7 @@ import NextRace from "./NextRace";
 const LoggedSplash = () => {
   return (
     <>
-      <div className="flex flex-wrap mt-16 h-[850px] ">
+      <div className="flex flex-wrap mt-14 ">
         {/* <div className="  h-full w-1/3"> */}
         <DriverStandings />
         {/* </div>

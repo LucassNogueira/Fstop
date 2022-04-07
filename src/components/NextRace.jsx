@@ -3,7 +3,7 @@ import axios from "axios";
 
 const NextRace = () => {
   const [race, setRace] = useState([]);
-  const [weather, setWeather] = useState([]);
+
   useEffect(() => {
     axios
       .get("https://v1.formula-1.api-sports.io/races?season=2022&type=race", {
@@ -21,31 +21,42 @@ const NextRace = () => {
   });
 
   return (
-    <>
-      <div className="flex flex-col  w-full h-full">
-        <div className="text-center w-full" key={displayRace[0]?.id}>
-          <h1 className="text-3xl font-semibold text-center pt-4">
-            {displayRace[0]?.circuit.name}
-          </h1>
+    <div className="bg-gray-50">
+      <div className="relative bg-gray-800 mt-16">
+        <div className="h-40 lg:w-1/4 bg-gray-50 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
           <img
-            alt={`track:${displayRace[0]?.circuit.name}`}
+            className="w-full h-full object-contain"
             src={displayRace[0]?.circuit?.image}
-            className=" m-auto mt-5 h-[170px]"
+            alt={`track:${displayRace[0]?.circuit.name}`}
           />
-          <p className="text-2xl font-semibold mt-5">
-            Date: {displayRace[0]?.date.slice(0, 10)}
-          </p>
-          <p className="text-2xl font-semibold mt-5">
-            Total Laps: {displayRace[0]?.laps.total}
-          </p>
-          <p className="text-2xl font-semibold mt-5">
-            Race Distance:{" "}
-            {Number(displayRace[0]?.distance.slice(0, 5) / 1.609).toFixed(2)}{" "}
-            Miles
-          </p>
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-10">
+          <div className="lg:w-full lg:ml-40 md:ml-auto md:w-1/2 md:pl-10">
+            <h2 className="text-2xl font-semibold uppercase tracking-wider text-gray-300">
+              It's lights out and away we go sunday at the
+            </h2>
+            <p className="mt-2 text-white text-3xl font-extrabold tracking-tight sm:text-4xl">
+              {displayRace[0]?.circuit.name}
+            </p>
+            <p className="mt-3 text-lg text-gray-300">
+              {" "}
+              <p>Date: {displayRace[0]?.date.slice(0, 10)}</p>
+              <p>Total Laps: {displayRace[0]?.laps.total}</p>
+              <p>
+                Race Distance:{" "}
+                {Number(displayRace[0]?.distance.slice(0, 5) / 1.609).toFixed(
+                  2
+                )}{" "}
+                Miles
+              </p>
+            </p>
+            <div className="mt-8">
+              <div className="inline-flex rounded-md shadow"></div>
+            </div>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
