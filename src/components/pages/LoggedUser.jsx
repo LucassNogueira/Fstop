@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { AuthContext } from "../Auth";
 import NewsCards from "../Cards/NewsCards";
 import NextRace from "../NextRace";
-import HomePage from "./HomePage";
+import Splash from "./Splash";
+
 const LoggedUser = () => {
   const { currentUser } = useContext(AuthContext);
 
@@ -12,7 +13,7 @@ const LoggedUser = () => {
       <NewsCards />
     </main>
   ) : (
-    <HomePage />
+    <Splash />
   );
 };
 

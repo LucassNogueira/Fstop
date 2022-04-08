@@ -33,10 +33,10 @@ const NextRace = () => {
         <div className="relative max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-10">
           <div className="lg:w-full lg:ml-40 md:ml-auto md:w-1/2 md:pl-10 text-center">
             <h2 className="text-2xl font-semibold uppercase tracking-wider text-gray-300">
-              It's lights out and away we go sunday at the
+              Petrol is in the air at the
             </h2>
             <p className="mt-2 text-white text-3xl font-extrabold tracking-tight sm:text-4xl">
-              {displayRace[0]?.circuit.name}
+              {displayRace[0]?.competition?.name}
             </p>
             <span className=" text-xl text-gray-300">
               {" "}

@@ -3,7 +3,7 @@ import { BsHeartFill } from "react-icons/bs";
 
 const DriverCard = ({ driver, faveDriver, setFaveDriver, handleClick }) => {
   if (driver.points === null) {
-    return (driver.points = 0);
+    return driver.points == 0;
   }
 
   return (

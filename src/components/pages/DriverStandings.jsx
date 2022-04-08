@@ -18,6 +18,7 @@ const DriverStandings = () => {
       })
       .then((res) => setDrivers(res.data.response))
       .catch((error) => console.log(error));
+    console.log("hit");
   }, []);
   const id = currentUser.uid;
   const db = getFirestore();
