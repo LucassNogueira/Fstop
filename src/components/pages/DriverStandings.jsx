@@ -3,11 +3,12 @@ import axios from "axios";
 import DriverCard from "../Cards/DriverCard";
 import { AuthContext } from "../Auth";
 import { doc, updateDoc, getFirestore } from "firebase/firestore";
+import { halfDB } from "../halfimages";
 const DriverStandings = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, state } = useContext(AuthContext);
   const [drivers, setDrivers] = useState([]);
   const [faveDriver, setFaveDriver] = useState({});
-
+  const [halfPic, setHalfPic] = useState([]);
   useEffect(() => {
     axios
       .get("https://v1.formula-1.api-sports.io/rankings/drivers?season=2022", {
@@ -18,11 +19,10 @@ const DriverStandings = () => {
       })
       .then((res) => setDrivers(res.data.response))
       .catch((error) => console.log(error));
-    console.log("hit");
   }, []);
-  const id = currentUser.uid;
+
   const db = getFirestore();
-  const driverRef = doc(db, "Users", id);
+  const driverRef = doc(db, "Users", currentUser.uid);
 
   const handleClick = (driver) => {
     setFaveDriver(driver);
@@ -42,6 +42,9 @@ const DriverStandings = () => {
         })
       )
       .catch((error) => console.log(error));
+
+    const half = halfDB.filter((pic) => pic.id === driver.driver.id);
+    setHalfPic(half);
   };
 
   return (
@@ -49,6 +52,8 @@ const DriverStandings = () => {
       <h1 className="text-5xl mb-8  text-center font-semibold">
         Current Driver Rankings
       </h1>
+
+      {halfPic[0] ? <img src={halfPic[0]?.img} alt="img" /> : ""}
       <div className="text-center justify-center flex gap-6 flex-wrap ">
         {drivers.map((driver) => (
           <DriverCard

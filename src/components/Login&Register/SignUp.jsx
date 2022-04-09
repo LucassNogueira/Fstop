@@ -14,13 +14,15 @@ const SignUp = () => {
     e.preventDefault();
     const { email, password, displayName } = e.target.elements;
     try {
-      await signUp(email.value, password.value, displayName.value).then(
-        (results) => {
-          const user = results.user;
-          setCurrentUser(user);
-          newDocument(entriesDB, user);
-        }
-      );
+      await signUp(
+        email.value,
+        password.value,
+        displayName.value.photoURL.value
+      ).then((results) => {
+        const user = results.user;
+        setCurrentUser(user);
+        newDocument(entriesDB, user);
+      });
     } catch (error) {
       console.log(error.message);
     }

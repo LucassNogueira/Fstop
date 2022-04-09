@@ -5,16 +5,16 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "../media/logof1.svg";
 const Login = () => {
   const navigate = useNavigate();
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
   async function handleLogin(e) {
     e.preventDefault();
     const { email, password } = e.target.elements;
-
     try {
       await login(email.value, password.value)
         .then((userCredential) => {
           const user = userCredential.user;
-          setCurrentUser(user);
+          // setCurrentUser(user);
+          dispatch({ type: "LOGIN", payload: user });
         })
         .catch((error) => {
           console.log(error);

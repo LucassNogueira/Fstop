@@ -2,10 +2,6 @@ import React, { useContext } from "react";
 import { BsHeartFill } from "react-icons/bs";
 
 const DriverCard = ({ driver, faveDriver, setFaveDriver, handleClick }) => {
-  if (driver.points === null) {
-    return driver.points == 0;
-  }
-
   return (
     <div className="wrapper relative justify-center rounded-2xl bg-gray-200 text-gray-900 h-[351px] w-[228px]">
       <BsHeartFill
@@ -38,7 +34,7 @@ const DriverCard = ({ driver, faveDriver, setFaveDriver, handleClick }) => {
             </div>
             <div className="mt-1">
               <span className="text-teal-600 text-md font-semibold">
-                {driver.points}{" "}
+                {!driver.points ? "0" : driver.points}{" "}
               </span>
               <span className="text-sm text-gray-600">Points</span>
             </div>
