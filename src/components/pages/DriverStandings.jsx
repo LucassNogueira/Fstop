@@ -5,10 +5,10 @@ import { AuthContext } from "../Auth";
 import { doc, updateDoc, getFirestore } from "firebase/firestore";
 import { halfDB } from "../halfimages";
 const DriverStandings = () => {
-  const { currentUser, state } = useContext(AuthContext);
+  const { currentUser, halfPic, setHalfPic } = useContext(AuthContext);
   const [drivers, setDrivers] = useState([]);
   const [faveDriver, setFaveDriver] = useState({});
-  const [halfPic, setHalfPic] = useState([]);
+
   useEffect(() => {
     axios
       .get("https://v1.formula-1.api-sports.io/rankings/drivers?season=2022", {
@@ -53,7 +53,6 @@ const DriverStandings = () => {
         Current Driver Rankings
       </h1>
 
-      {halfPic[0] ? <img src={halfPic[0]?.img} alt="img" /> : ""}
       <div className="text-center justify-center flex gap-6 flex-wrap ">
         {drivers.map((driver) => (
           <DriverCard

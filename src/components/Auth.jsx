@@ -20,6 +20,7 @@ export const authReducer = (state, action) => {
 };
 
 export const AuthProvider = ({ children }) => {
+  const [halfPic, setHalfPic] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const [state, dispatch] = useReducer(authReducer, { user: null });
   // console.log("AuthContextProvider: State", state);
@@ -37,7 +38,14 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ currentUser, setCurrentUser, ...state, dispatch }}
+      value={{
+        currentUser,
+        setCurrentUser,
+        ...state,
+        dispatch,
+        halfPic,
+        setHalfPic,
+      }}
     >
       {children}
     </AuthContext.Provider>
