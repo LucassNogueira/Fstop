@@ -4,6 +4,7 @@ import DriverCard from "../Cards/DriverCard";
 import { AuthContext } from "../Auth";
 import { doc, updateDoc, getFirestore } from "firebase/firestore";
 import { halfDB } from "../halfimages";
+
 const DriverStandings = () => {
   const { currentUser, halfPic, setHalfPic } = useContext(AuthContext);
   const [drivers, setDrivers] = useState([]);
@@ -19,6 +20,11 @@ const DriverStandings = () => {
       })
       .then((res) => setDrivers(res.data.response))
       .catch((error) => console.log(error));
+    const saved = localStorage.getItem("favDriver");
+    if (saved) {
+      setFaveDriver(saved);
+      console.log(faveDriver);
+    }
   }, []);
 
   const db = getFirestore();
@@ -26,6 +32,7 @@ const DriverStandings = () => {
 
   const handleClick = (driver) => {
     setFaveDriver(driver);
+    console.log(driver);
     axios
       .get(
         `https://v1.formula-1.api-sports.io/drivers?name=${driver.driver.name}`,

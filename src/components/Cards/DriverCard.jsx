@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { BsHeartFill } from "react-icons/bs";
 
 const DriverCard = ({ driver, faveDriver, setFaveDriver, handleClick }) => {
+  localStorage.setItem("favDriver", JSON.stringify(faveDriver));
   return (
     <div className="wrapper relative justify-center rounded-2xl bg-gray-200 text-gray-900 h-[351px] w-[228px]">
       <BsHeartFill

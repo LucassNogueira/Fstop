@@ -8,6 +8,7 @@ import LoggedUser from "./components/pages/LoggedUser";
 import Profile from "./components/pages/Profile";
 import TeamStandings from "./components/pages/TeamStandings";
 import Circuit from "./components/pages/Circuit";
+import NotFoundPage from "./components/pages/NotFoundPage";
 function App() {
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/logged" element={<LoggedUser />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
