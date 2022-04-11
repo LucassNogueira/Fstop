@@ -40,6 +40,9 @@ const NextRace = () => {
             </p>
             <span className=" text-xl text-gray-300">
               {" "}
+              <p className="mt-3">
+                Country: {displayRace[0]?.competition.location.country}
+              </p>
               <p className="mt-3">Total Laps: {displayRace[0]?.laps.total}</p>
               <p className="mt-3">Date: {displayRace[0]?.date.slice(0, 10)}</p>
               <p className="mt-3">

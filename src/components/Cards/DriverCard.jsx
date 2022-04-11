@@ -1,16 +1,17 @@
 import React, { useContext, useEffect } from "react";
 import { BsHeartFill } from "react-icons/bs";
+import { AuthContext } from "../Auth";
 
-const DriverCard = ({ driver, faveDriver, setFaveDriver, handleClick }) => {
-  // localStorage.setItem("favDriver", JSON.stringify(faveDriver));
+const DriverCard = ({ driver, handleClick }) => {
+  const { userDoc } = useContext(AuthContext);
 
   return (
     <div className="wrapper relative justify-center rounded-2xl bg-gray-200 text-gray-900 h-[351px] w-[228px]">
       <BsHeartFill
-        fill={faveDriver === driver ? "red" : null}
         size="25"
         className="relative  left-[85%] top-4 cursor-pointer"
         onClick={() => handleClick(driver)}
+        fill={userDoc?.favDriver?.[0]?.id === driver.driver.id ? "red" : null}
       />
       <div className="justify-center">
         <img

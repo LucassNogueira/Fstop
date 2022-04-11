@@ -6,19 +6,10 @@ import { doc, updateDoc, getFirestore, getDoc } from "firebase/firestore";
 import { halfDB } from "../halfimages";
 
 const DriverStandings = () => {
-  const { currentUser, halfPic, setHalfPic } = useContext(AuthContext);
+  const { currentUser, userDoc, setUserDoc, auth } = useContext(AuthContext);
   const [drivers, setDrivers] = useState([]);
   const [faveDriver, setFaveDriver] = useState({});
-
-  useEffect(() => {
-    getDoc(doc(db, "Users", currentUser.uid)).then((snap) => {
-      if (snap.exists()) {
-        console.log("Document data:", snap.data());
-      } else {
-        console.log("No such document!");
-      }
-    });
-  }, []);
+  const [checkName, setCheckName] = useState("");
 
   useEffect(() => {
     axios
@@ -30,19 +21,15 @@ const DriverStandings = () => {
       })
       .then((res) => setDrivers(res.data.response))
       .catch((error) => console.log(error));
-    // const saved = localStorage.getItem("favDriver");
-    // if (saved) {
-    //   setFaveDriver(saved);
-    //   console.log(faveDriver);
-    // }
   }, []);
 
   const db = getFirestore();
-  const driverRef = doc(db, "Users", currentUser.uid);
+  // console.log(userDoc);
 
+  const setFav = (value) => {
+    setFaveDriver(value);
+  };
   const handleClick = (driver) => {
-    setFaveDriver(driver);
-    console.log(driver);
     axios
       .get(
         `https://v1.formula-1.api-sports.io/drivers?name=${driver.driver.name}`,
@@ -53,17 +40,33 @@ const DriverStandings = () => {
           },
         }
       )
-      .then((res) =>
+      .then((res) => {
+        setUserDoc((prevState) => {
+          let newState = prevState;
+          newState.favDriver = [res.data.response[0]];
+          return newState;
+        });
+        const driverRef = doc(db, "Users", currentUser.uid);
+        setFav(res.data.response[0]);
         updateDoc(driverRef, {
           favDriver: res.data.response,
-        })
-      )
+        });
+      })
       .catch((error) => console.log(error));
-
+    const driverRef = doc(db, "Users", currentUser.uid);
     const half = halfDB.filter((pic) => pic.id === driver.driver.id);
-    setHalfPic(half);
+    updateDoc(driverRef, {
+      halfImg: half,
+    });
+    setUserDoc((prevState) => {
+      let newState = prevState;
+      newState.halfImg = half;
+      return newState;
+    });
   };
-
+  useEffect(() => {
+    setFav(userDoc.favDriver);
+  }, []);
   return (
     <div className="text-center bg-gray-50 mt-16">
       <h1 className="text-5xl mb-8  text-center font-semibold">
@@ -74,8 +77,6 @@ const DriverStandings = () => {
         {drivers.map((driver) => (
           <DriverCard
             key={driver.driver.id}
-            faveDriver={faveDriver}
-            setFaveDriver={setFaveDriver}
             driver={driver}
             handleClick={handleClick}
           />

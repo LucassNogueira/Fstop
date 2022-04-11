@@ -5,7 +5,7 @@ import logo from "../media/logof1.svg";
 import NavItem from "./NavItem";
 import DropDown from "./DropDown";
 const NavBar = () => {
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { currentUser, setCurrentUser, auth } = useContext(AuthContext);
 
   return (
     <nav
@@ -17,7 +17,9 @@ const NavBar = () => {
       </Link>
 
       <ul className="flex justify-end mr-7 items-center space-x-7">
-        <NavItem content="Home" href={!currentUser ? "/" : "/logged"} />
+        <li className="md:ml-8 md:my-0 my-7 text-lg font-semibold list-none">
+          <a href={!currentUser ? "/" : "/logged"}>Home</a>
+        </li>
         {currentUser && <DropDown />}
       </ul>
     </nav>

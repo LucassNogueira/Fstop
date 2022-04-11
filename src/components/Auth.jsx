@@ -20,9 +20,8 @@ export const authReducer = (state, action) => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [halfPic, setHalfPic] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
-
+  const [userDoc, setUserDoc] = useState({});
   const db = getFirestore();
 
   const [state, dispatch] = useReducer(authReducer, { user: null });
@@ -33,7 +32,7 @@ export const AuthProvider = ({ children }) => {
       if (user) {
         setCurrentUser(user);
         getDoc(doc(db, "Users", user.uid)).then((snap) => {
-          snap.data();
+          setUserDoc(snap.data());
         });
       } else {
         setCurrentUser(null);
@@ -46,12 +45,13 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        auth,
+        setUserDoc,
+        userDoc,
         currentUser,
         setCurrentUser,
         ...state,
         dispatch,
-        halfPic,
-        setHalfPic,
       }}
     >
       {children}
