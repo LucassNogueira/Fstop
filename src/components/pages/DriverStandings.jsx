@@ -2,13 +2,23 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import DriverCard from "../Cards/DriverCard";
 import { AuthContext } from "../Auth";
-import { doc, updateDoc, getFirestore } from "firebase/firestore";
+import { doc, updateDoc, getFirestore, getDoc } from "firebase/firestore";
 import { halfDB } from "../halfimages";
 
 const DriverStandings = () => {
   const { currentUser, halfPic, setHalfPic } = useContext(AuthContext);
   const [drivers, setDrivers] = useState([]);
   const [faveDriver, setFaveDriver] = useState({});
+
+  useEffect(() => {
+    getDoc(doc(db, "Users", currentUser.uid)).then((snap) => {
+      if (snap.exists()) {
+        console.log("Document data:", snap.data());
+      } else {
+        console.log("No such document!");
+      }
+    });
+  }, []);
 
   useEffect(() => {
     axios
@@ -20,11 +30,11 @@ const DriverStandings = () => {
       })
       .then((res) => setDrivers(res.data.response))
       .catch((error) => console.log(error));
-    const saved = localStorage.getItem("favDriver");
-    if (saved) {
-      setFaveDriver(saved);
-      console.log(faveDriver);
-    }
+    // const saved = localStorage.getItem("favDriver");
+    // if (saved) {
+    //   setFaveDriver(saved);
+    //   console.log(faveDriver);
+    // }
   }, []);
 
   const db = getFirestore();
