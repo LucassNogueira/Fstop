@@ -14,15 +14,13 @@ const SignUp = () => {
     e.preventDefault();
     const { email, password, displayName } = e.target.elements;
     try {
-      await signUp(
-        email.value,
-        password.value,
-        displayName.value.photoURL.value
-      ).then((results) => {
-        const user = results.user;
-        setCurrentUser(user);
-        newDocument(entriesDB, user);
-      });
+      await signUp(email.value, password.value, displayName.value).then(
+        (results) => {
+          const user = results.user;
+          setCurrentUser(user);
+          newDocument(entriesDB, user);
+        }
+      );
     } catch (error) {
       console.log(error.message);
     }
@@ -36,7 +34,7 @@ const SignUp = () => {
   }
   return (
     <div className="bg-f1-pic h-screen w-screen fixed top-0 z-[-1] ">
-      <div className="mt-40 h-[55%] rounded-3xl flex items-center justify-center sm:px-6 lg:px-8 bg-gray-400 w-[30%] m-auto bg-opacity-80">
+      <div className="mt-40 h-[55%]  flex items-center justify-center sm:px-6 lg:px-8 bg-gray-200 w-[30%] m-auto bg-opacity-80">
         <div className="space-y-8">
           <div>
             <img className="mx-auto h-20" src={logo} alt="Workflow" />

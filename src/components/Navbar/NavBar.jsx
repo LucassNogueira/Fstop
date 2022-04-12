@@ -18,7 +18,7 @@ const NavBar = () => {
 
       <ul className="flex justify-end mr-7 items-center space-x-7">
         <li className="md:ml-8 md:my-0 my-7 text-lg font-semibold list-none">
-          <a href={!currentUser ? "/" : "/logged"}>Home</a>
+          <Link to={!currentUser ? "/" : "/logged"}>Home</Link>
         </li>
         {currentUser && <DropDown />}
       </ul>

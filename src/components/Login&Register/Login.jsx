@@ -27,7 +27,7 @@ const Login = () => {
 
   return (
     <div className="bg-log-in h-screen w-screen fixed top-0 z-[-1] ">
-      <div className="mt-40 h-[50%] rounded-3xl flex items-center justify-center sm:px-6 lg:px-8 bg-gray-400 w-[30%] m-auto bg-opacity-80">
+      <div className="mt-40 h-[50%] flex items-center justify-center sm:px-6 lg:px-8 bg-gray-200 w-[30%] m-auto bg-opacity-80">
         <div className="w-10/12 space-y-8">
           <div>
             <img className="mx-auto h-20" src={logo} alt="Workflow" />

@@ -218,7 +218,7 @@ const NewsCards = () => {
       </div>
       <div className="relative max-w-7xl mx-auto">
         <div className="text-center">
-          <h2 className="lg:text-6xl font-extrabold text-gray-900 sm:text-4xl">
+          <h2 className="lg:text-6xl text-5xl font-extrabold text-gray-900 sm:text-4xl">
             From the pits
           </h2>
           <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
