@@ -4,7 +4,7 @@ import CircuitCard from "../Cards/CircuitCard";
 import { AuthContext } from "../Auth";
 import { doc, updateDoc, getFirestore } from "firebase/firestore";
 const Circuit = () => {
-  const { currentUser, setUserDoc } = useContext(AuthContext);
+  const { currentUser, setUserDoc, userDoc } = useContext(AuthContext);
   const [faveCircuit, setFaveCircuit] = useState("");
   const [circuits, setCircuits] = useState([]);
   useEffect(() => {
@@ -21,14 +21,16 @@ const Circuit = () => {
 
   const db = getFirestore();
   const handleClick = (circuit) => {
-    // setUserDoc((prevState) => {
-    //   let newState = prevState;
-    //   newState.favTrack = circuit;
-    // });
     setFaveCircuit(circuit);
     const docRef = doc(db, "Users", currentUser.uid);
     updateDoc(docRef, {
       favTrack: circuit,
+    });
+    setUserDoc((prevState) => {
+      return {
+        ...prevState,
+        favTrack: circuit,
+      };
     });
   };
 
@@ -43,6 +45,7 @@ const Circuit = () => {
             faveCircuit={faveCircuit}
             setFaveCircuit={setFaveCircuit}
             handleClick={handleClick}
+            userDoc={userDoc}
           />
         ))}
       </div>

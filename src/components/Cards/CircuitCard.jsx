@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { BsHeartFill } from "react-icons/bs";
 const CircuitCard = ({ circuit, faveCircuit, handleClick, userDoc }) => {
+  // console.log(userDoc.favTrack);
+  // console.log(circuit);
   return (
     <div className="wrapper relative justify-center rounded-2xl bg-gray-200 text-gray-900 h-[351px] w-[328px]">
       <BsHeartFill
-        fill={faveCircuit === circuit ? "red" : null}
+        fill={userDoc?.favTrack?.id === circuit?.id ? "red" : null}
         size="25"
         className="relative  left-[85%] top-4 cursor-pointer"
         onClick={() => handleClick(circuit)}
