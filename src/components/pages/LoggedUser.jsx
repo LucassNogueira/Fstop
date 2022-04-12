@@ -15,6 +15,11 @@ const LoggedUser = () => {
       ) : (
         ""
       )}
+      {userDoc.trackImg ? (
+        <img src={userDoc.trackImg[0]?.img} alt="Fav-img" className="h-96" />
+      ) : (
+        ""
+      )}
       {userDoc.favTrack ? (
         <img
           src={userDoc.favTrack.circuit.image}

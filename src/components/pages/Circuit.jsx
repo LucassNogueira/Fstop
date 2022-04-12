@@ -3,9 +3,10 @@ import axios from "axios";
 import CircuitCard from "../Cards/CircuitCard";
 import { AuthContext } from "../Auth";
 import { doc, updateDoc, getFirestore } from "firebase/firestore";
+import { trackDB } from "../trackimages";
 const Circuit = () => {
   const { currentUser, setUserDoc, userDoc } = useContext(AuthContext);
-  const [faveCircuit, setFaveCircuit] = useState("");
+
   const [circuits, setCircuits] = useState([]);
   useEffect(() => {
     axios
@@ -21,7 +22,6 @@ const Circuit = () => {
 
   const db = getFirestore();
   const handleClick = (circuit) => {
-    setFaveCircuit(circuit);
     const docRef = doc(db, "Users", currentUser.uid);
     updateDoc(docRef, {
       favTrack: circuit,
@@ -30,6 +30,16 @@ const Circuit = () => {
       return {
         ...prevState,
         favTrack: circuit,
+      };
+    });
+    const trackImg = trackDB.filter((track) => track.id === circuit.circuit.id);
+    updateDoc(docRef, {
+      trackImg: trackImg,
+    });
+    setUserDoc((prevState) => {
+      return {
+        ...prevState,
+        trackImg: trackImg,
       };
     });
   };
@@ -42,8 +52,6 @@ const Circuit = () => {
           <CircuitCard
             key={circuit.circuit.id}
             circuit={circuit}
-            faveCircuit={faveCircuit}
-            setFaveCircuit={setFaveCircuit}
             handleClick={handleClick}
             userDoc={userDoc}
           />

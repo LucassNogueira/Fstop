@@ -4,9 +4,10 @@ import TeamCard from "../Cards/TeamCard";
 import { AuthContext } from "../Auth";
 import { doc, updateDoc, getFirestore } from "firebase/firestore";
 const TeamStandings = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, userDoc, setUserDoc } = useContext(AuthContext);
   const [teams, setTeams] = useState([]);
   const [faveTeam, setFaveTeam] = useState("");
+  const db = getFirestore();
   useEffect(() => {
     axios
       .get("https://v1.formula-1.api-sports.io/rankings/teams?season=2022", {
@@ -18,23 +19,28 @@ const TeamStandings = () => {
       .then((res) => setTeams(res.data.response))
       .catch((error) => console.log(error));
   }, []);
-  const id = currentUser.uid;
-  const db = getFirestore();
-  const docRef = doc(db, "Users", id);
+
   const handleClick = (team) => {
+    const docRef = doc(db, "Users", currentUser.uid);
     setFaveTeam(team);
     axios
-      .get(`https://v1.formula-1.api-sports.io/teams?name=${team.team.name}`, {
+      .get(`https://v1.formula-1.api-sports.io/teams?id=${team.team.id}`, {
         headers: {
           "x-rapidapi-key": process.env.REACT_APP_APP_API_KEY,
           "x-rapidapi-host": "api-formula-1.p.rapidapi.com",
         },
       })
-      .then((res) =>
+      .then((res) => {
         updateDoc(docRef, {
           favTeam: res.data.response,
-        })
-      )
+        });
+        setUserDoc((prevState) => {
+          return {
+            ...prevState,
+            favTeam: res.data.response,
+          };
+        });
+      })
       .catch((error) => console.log(error));
   };
   return (
@@ -50,6 +56,7 @@ const TeamStandings = () => {
             faveTeam={faveTeam}
             setFaveTeam={setFaveTeam}
             handleClick={handleClick}
+            userDoc={userDoc}
           />
         ))}
       </div>

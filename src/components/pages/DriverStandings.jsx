@@ -63,9 +63,7 @@ const DriverStandings = () => {
       return newState;
     });
   };
-  useEffect(() => {
-    setFav(userDoc.favDriver);
-  }, []);
+
   return (
     <div className="text-center bg-gray-50 mt-16">
       <h1 className="text-5xl mb-8  text-center font-semibold">

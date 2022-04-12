@@ -9,7 +9,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className="shadow-md w-full fixed top-0 left-0 z-10 flex justify-end
+      className="shadow-md w-full fixed top-0 left-0 z-40 flex justify-end
    items-center gap-4 h-14 bg-gray-50"
     >
       <Link to={!currentUser ? "/" : "/logged"}>
