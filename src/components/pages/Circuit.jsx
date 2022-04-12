@@ -4,12 +4,12 @@ import CircuitCard from "../Cards/CircuitCard";
 import { AuthContext } from "../Auth";
 import { doc, updateDoc, getFirestore } from "firebase/firestore";
 const Circuit = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, setUserDoc } = useContext(AuthContext);
   const [faveCircuit, setFaveCircuit] = useState("");
   const [circuits, setCircuits] = useState([]);
   useEffect(() => {
     axios
-      .get("https://v1.formula-1.api-sports.io/circuits", {
+      .get("https://v1.formula-1.api-sports.io/races?season=2022&type=race", {
         headers: {
           "x-rapidapi-key": process.env.REACT_APP_APP_API_KEY,
           "x-rapidapi-host": "api-formula-1.p.rapidapi.com",
@@ -18,11 +18,15 @@ const Circuit = () => {
       .then((res) => setCircuits(res.data.response))
       .catch((error) => console.log(error));
   }, []);
-  const id = currentUser.uid;
+
   const db = getFirestore();
-  const docRef = doc(db, "Users", id);
   const handleClick = (circuit) => {
+    // setUserDoc((prevState) => {
+    //   let newState = prevState;
+    //   newState.favTrack = circuit;
+    // });
     setFaveCircuit(circuit);
+    const docRef = doc(db, "Users", currentUser.uid);
     updateDoc(docRef, {
       favTrack: circuit,
     });
@@ -34,7 +38,7 @@ const Circuit = () => {
       <div className="text-center justify-center flex gap-6 flex-wrap ">
         {circuits.map((circuit) => (
           <CircuitCard
-            key={circuit.id}
+            key={circuit.circuit.id}
             circuit={circuit}
             faveCircuit={faveCircuit}
             setFaveCircuit={setFaveCircuit}

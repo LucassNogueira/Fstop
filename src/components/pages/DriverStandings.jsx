@@ -9,7 +9,6 @@ const DriverStandings = () => {
   const { currentUser, userDoc, setUserDoc, auth } = useContext(AuthContext);
   const [drivers, setDrivers] = useState([]);
   const [faveDriver, setFaveDriver] = useState({});
-  const [checkName, setCheckName] = useState("");
 
   useEffect(() => {
     axios

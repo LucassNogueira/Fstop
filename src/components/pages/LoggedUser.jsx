@@ -15,6 +15,15 @@ const LoggedUser = () => {
       ) : (
         ""
       )}
+      {userDoc.favTrack ? (
+        <img
+          src={userDoc.favTrack.circuit.image}
+          alt="Fav-track"
+          className="h-96"
+        />
+      ) : (
+        ""
+      )}
       <NewsCards />
     </main>
   ) : (
