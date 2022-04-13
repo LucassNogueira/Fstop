@@ -32,12 +32,12 @@ const TeamStandings = () => {
       })
       .then((res) => {
         updateDoc(docRef, {
-          favTeam: res.data.response,
+          favTeam: res.data.response[0],
         });
         setUserDoc((prevState) => {
           return {
             ...prevState,
-            favTeam: res.data.response,
+            favTeam: res.data.response[0],
           };
         });
       })

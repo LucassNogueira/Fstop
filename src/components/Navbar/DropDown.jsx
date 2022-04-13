@@ -19,6 +19,7 @@ export default function Example() {
     await setCurrentUser(null);
     await setUserDoc(null);
   }
+
   return (
     <Menu as="div" className="relative inline-block ">
       <div>

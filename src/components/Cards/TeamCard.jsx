@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { BsHeartFill } from "react-icons/bs";
-const TeamCard = ({ team, faveTeam, handleClick, userDoc }) => {
+const TeamCard = ({ team, handleClick, userDoc }) => {
   return (
     <div className="border-2 relative wrapper flex flex-col justify-center rounded-2xl bg-gray-200  text-gray-900 h-[360px] px-3 ">
       <BsHeartFill
-        fill={userDoc?.favTeam[0]?.id === team.team.id ? "red" : ""}
+        fill={userDoc.favTeam.id === team.team.id ? "red" : ""}
         size="25"
         className="relative  left-[85%] -top-7 cursor-pointer"
         onClick={() => handleClick(team)}

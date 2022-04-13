@@ -6,9 +6,10 @@ import { doc, updateDoc, getFirestore, getDoc } from "firebase/firestore";
 import { halfDB } from "../halfimages";
 
 const DriverStandings = () => {
-  const { currentUser, userDoc, setUserDoc, auth } = useContext(AuthContext);
+  const { currentUser, userDoc, setUserDoc } = useContext(AuthContext);
   const [drivers, setDrivers] = useState([]);
   const [faveDriver, setFaveDriver] = useState({});
+  const db = getFirestore();
 
   useEffect(() => {
     axios
@@ -22,13 +23,11 @@ const DriverStandings = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  const db = getFirestore();
-  // console.log(userDoc);
-
   const setFav = (value) => {
     setFaveDriver(value);
   };
   const handleClick = (driver) => {
+    //driver coming in is the actual driver object
     axios
       .get(
         `https://v1.formula-1.api-sports.io/drivers?name=${driver.driver.name}`,
@@ -40,26 +39,27 @@ const DriverStandings = () => {
         }
       )
       .then((res) => {
+        console.log(res.data.response);
         setUserDoc((prevState) => {
           let newState = prevState;
-          newState.favDriver = [res.data.response[0]];
+          newState.favDriver = res.data.response[0];
           return newState;
         });
         const driverRef = doc(db, "Users", currentUser.uid);
         setFav(res.data.response[0]);
         updateDoc(driverRef, {
-          favDriver: res.data.response,
+          favDriver: res.data.response[0],
         });
       })
       .catch((error) => console.log(error));
     const driverRef = doc(db, "Users", currentUser.uid);
     const half = halfDB.filter((pic) => pic.id === driver.driver.id);
     updateDoc(driverRef, {
-      halfImg: half,
+      halfImg: half[0],
     });
     setUserDoc((prevState) => {
       let newState = prevState;
-      newState.halfImg = half;
+      newState.halfImg = half[0];
       return newState;
     });
   };

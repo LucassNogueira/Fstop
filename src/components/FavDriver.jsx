@@ -3,8 +3,8 @@ import { AuthContext } from "./Auth";
 const FavDriver = () => {
   const { userDoc } = useContext(AuthContext);
   let driverSearch = "";
-  if (userDoc?.favDriver[0]?.name) {
-    driverSearch = userDoc?.favDriver[0]?.name.replace(" ", "_");
+  if (userDoc?.favDriver?.name) {
+    driverSearch = userDoc?.favDriver?.name.replace(" ", "_");
   }
 
   return (
@@ -13,7 +13,7 @@ const FavDriver = () => {
         <div className="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-3/5 sm:w-2/3 justify-center sm:pr-10">
           <div className="w-full sm:p-2 px-4">
             <h1 className="title-font font-semibold text-5xl text-center  sm:text-8xl mb-2 text-gray-900">
-              {userDoc?.favDriver[0]?.name}
+              {userDoc?.favDriver?.name}
             </h1>
           </div>
           <div className="mt-8 pb-2  sm:pb-5">
@@ -27,7 +27,7 @@ const FavDriver = () => {
                         Career Points
                       </dt>
                       <dd className="order-1 text-5xl font-extrabold text-indigo-600">
-                        {userDoc?.favDriver[0]?.career_points}
+                        {userDoc?.favDriver?.career_points}
                       </dd>
                     </div>
                     <div className="flex flex-col border-t border-b border-gray-200 p-6 text-center sm:border-0 sm:border-l sm:border-r">
@@ -35,7 +35,7 @@ const FavDriver = () => {
                         Podiums
                       </dt>
                       <dd className="order-1 text-5xl font-extrabold text-indigo-600">
-                        {userDoc?.favDriver[0]?.podiums}
+                        {userDoc?.favDriver?.podiums}
                       </dd>
                     </div>
                     <div className="flex flex-col border-t border-gray-200 p-6 text-center sm:border-0 sm:border-l">
@@ -43,7 +43,7 @@ const FavDriver = () => {
                         Races Entered
                       </dt>
                       <dd className="order-1 text-5xl font-extrabold text-indigo-600">
-                        {userDoc?.favDriver[0]?.grands_prix_entered}
+                        {userDoc?.favDriver?.grands_prix_entered}
                       </dd>
                     </div>
                   </dl>
@@ -60,7 +60,7 @@ const FavDriver = () => {
           >
             <img
               className=" object-center sm:h-[360px] lg:h-[30rem] rounded-full "
-              src={userDoc.halfImg[0].img}
+              src={userDoc.halfImg.img}
               alt=""
             />
           </a>

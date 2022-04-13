@@ -10,11 +10,11 @@ const FavTrack = () => {
         {userDoc?.favTrack?.competition.name}
       </h6>
       <img
-        src={userDoc?.trackImg[0]?.img}
+        src={userDoc?.trackImg?.img}
         alt="Fav-img"
         className="h-96 mx-auto "
       />
-      <div className="grid grid-cols-1 mx-auto mt-8 row-gap-3 md:grid-cols-3 ">
+      <div className="grid grid-cols-1 mx-auto mt-5 row-gap-3 md:grid-cols-3 ">
         <div className="text-center md:border-r md:border-slate-500">
           <h6 className="mb-3 text-4xl font-bold lg:text-5xl xl:text-6xl text-indigo-600">
             {userDoc?.favTrack.distance}

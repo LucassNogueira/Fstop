@@ -3,9 +3,11 @@ module.exports = {
   presets: [],
   darkMode: "media", // or 'class'
   theme: {
-    backgroundImage: {
-      "f1-pic": "url('./components/media/f1bg.jpg')",
-      "log-in": "url('./components/media/rbbg.jpg')",
+    extend: {
+      backgroundImage: {
+        "f1-pic": "url('./components/media/f1bg.jpg')",
+        "log-in": "url('./components/media/rbbg.jpg')",
+      },
     },
     screens: {
       sm: "640px",

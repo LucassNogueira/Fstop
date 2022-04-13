@@ -11,7 +11,7 @@ const DriverCard = ({ driver, handleClick }) => {
         size="25"
         className="relative  left-[85%] top-4 cursor-pointer"
         onClick={() => handleClick(driver)}
-        fill={userDoc?.favDriver?.[0]?.id === driver.driver.id ? "red" : null}
+        fill={userDoc?.favDriver?.id === driver.driver.id ? "red" : null}
       />
       <div className="justify-center">
         <img
