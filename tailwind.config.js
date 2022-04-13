@@ -1,3 +1,5 @@
+const plugins = require("tailwindcss/plugin");
+
 module.exports = {
   content: ["./src/**/*.{jsx,js,tx,tsx}"],
   theme: {
@@ -6,6 +8,9 @@ module.exports = {
       "log-in": "url('./components/media/rbbg.jpg')",
     },
     extend: {},
-    plugins: [],
+    plugins: [
+      require("@tailwindcss/typography"),
+      require("@tailwindcss/aspect-ratio"),
+    ],
   },
 };

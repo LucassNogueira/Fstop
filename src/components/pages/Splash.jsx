@@ -8,7 +8,7 @@ const Splash = () => {
   return (
     <div>
       <div>
-        <video className="mt-14" src={vidlink} autoPlay loop muted />
+        <video className="mt-14 w-screen" src={vidlink} autoPlay loop muted />
         <div className="absolute text-center justify-center w-full top-1/3 ">
           <h1 className=" font-bold text-8xl uppercase w-full bg-white bg-opacity-60 sm-40">
             It's lights out and away we go

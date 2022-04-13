@@ -31,7 +31,7 @@ const FavDriver = () => {
                         Podiums
                       </dt>
                       <dd className="order-1 text-5xl font-extrabold text-indigo-600">
-                        {userDoc.favDriver[0].podiums}
+                        {userDoc?.favDriver[0]?.podiums}
                       </dd>
                     </div>
                     <div className="flex flex-col border-t border-gray-200 p-6 text-center sm:border-0 sm:border-l">
@@ -39,7 +39,7 @@ const FavDriver = () => {
                         Races Entered
                       </dt>
                       <dd className="order-1 text-5xl font-extrabold text-indigo-600">
-                        {userDoc.favDriver[0].grands_prix_entered}
+                        {userDoc?.favDriver[0]?.grands_prix_entered}
                       </dd>
                     </div>
                   </dl>

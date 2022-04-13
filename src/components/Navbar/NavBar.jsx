@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Auth";
 import logo from "../media/logof1.svg";
-import NavItem from "./NavItem";
+
 import DropDown from "./DropDown";
 const NavBar = () => {
-  const { currentUser, setCurrentUser, auth } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <nav

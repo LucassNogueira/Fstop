@@ -13,10 +13,11 @@ function classNames(...classes) {
 }
 
 export default function Example() {
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { currentUser, setCurrentUser, setUserDoc } = useContext(AuthContext);
   async function handleLogout() {
     await logOut();
     await setCurrentUser(null);
+    await setUserDoc(null);
   }
   return (
     <Menu as="div" className="relative inline-block ">

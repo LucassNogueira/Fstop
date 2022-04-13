@@ -13,7 +13,7 @@ const LoggedUser = () => {
   return (
     <main className="bg-gray-50">
       <NextRace />
-      {currentUser ? (
+      {userDoc.favTeam && userDoc.favTrack && userDoc.favDriver ? (
         <>
           <FavDriver />
           <FavTrack />
