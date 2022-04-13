@@ -4,7 +4,7 @@ const FavTeam = () => {
   const { userDoc } = useContext(AuthContext);
 
   return (
-    <section className="text-gray-600 body-font py-10 border-y-2 border-indigo-600">
+    <section className="text-gray-600 mb-5 body-font py-10 border-y-2 border-indigo-600">
       <div className="container mx-auto flex px-0 py-0 md:flex-row flex-col items-center">
         <div className="lg:max-w-xl lg:w-full lg:h-full md:w-full w-full mb-10 md:mb-0">
           <img

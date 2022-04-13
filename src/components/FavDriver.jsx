@@ -8,7 +8,7 @@ const FavDriver = () => {
   }
 
   return (
-    <section className="text-gray-600 body-font mt-2">
+    <section className="text-gray-600 body-font mt-2 mb-5">
       <div className="container  mx-auto flex flex-wrap justify-center">
         <div className="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-3/5 sm:w-2/3 justify-center sm:pr-10">
           <div className="w-full sm:p-2 px-4">
