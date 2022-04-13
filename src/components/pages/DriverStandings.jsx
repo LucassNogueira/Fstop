@@ -70,7 +70,7 @@ const DriverStandings = () => {
         Current Driver Rankings
       </h1>
 
-      <div className="text-center justify-center flex gap-6 flex-wrap ">
+      <div className="text-center justify-center flex gap-6 flex-wrap mb-5">
         {drivers.map((driver) => (
           <DriverCard
             key={driver.driver.id}

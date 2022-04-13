@@ -91,13 +91,13 @@ const News = () => {
                 Dictum magnis risus phasellus vitae quam morbi. Quis lorem lorem
                 arcu, metus, egestas netus cursus. In.
               </p>
-              <ol role="list">
+              <ul role="list">
                 <li>Quis elit egestas venenatis mattis dignissim.</li>
                 <li>
                   Cras cras lobortis vitae vivamus ultricies facilisis tempus.
                 </li>
                 <li>Orci in sit morbi dignissim metus diam arcu pretium.</li>
-              </ol>
+              </ul>
               <p>
                 Rhoncus nisl, libero egestas diam fermentum dui. At quis
                 tincidunt vel ultricies. Vulputate aliquet velit faucibus

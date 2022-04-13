@@ -25,7 +25,7 @@ const FavTeam = () => {
             position {userDoc?.favTeam[0].pole_positions} times. Team principal,{" "}
             {userDoc?.favTeam[0].director}, continues to strive to turn{" "}
             {userDoc?.favTeam[0].name}'s{" "}
-            {userDoc?.favTeam[0].world_championships} world champion ships into{" "}
+            {userDoc?.favTeam[0].world_championships} world championships into{" "}
             {userDoc?.favTeam[0].world_championships + 1}.
           </p>
           <div className="flex justify-center"></div>

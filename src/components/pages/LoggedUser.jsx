@@ -13,7 +13,7 @@ const LoggedUser = () => {
   return (
     <main className="bg-gray-50">
       <NextRace />
-      {userDoc.favTeam && userDoc.favTrack && userDoc.favDriver ? (
+      {userDoc.favTeam && userDoc.favTrack && userDoc.favDriver[0] ? (
         <>
           <FavDriver />
           <FavTrack />
@@ -21,7 +21,7 @@ const LoggedUser = () => {
           <NewsCards />
         </>
       ) : (
-        ""
+        <NewsCards />
       )}
     </main>
   );

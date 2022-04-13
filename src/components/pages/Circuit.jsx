@@ -47,7 +47,7 @@ const Circuit = () => {
   return (
     <div className="text-center bg-gray-50 mt-16">
       <h1 className="text-5xl mb-8  text-center font-semibold">All Circuits</h1>
-      <div className="text-center justify-center flex gap-6 flex-wrap ">
+      <div className="text-center justify-center flex gap-6 flex-wrap mb-5">
         {circuits.map((circuit) => (
           <CircuitCard
             key={circuit.circuit.id}

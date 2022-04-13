@@ -44,7 +44,7 @@ const TeamStandings = () => {
       .catch((error) => console.log(error));
   };
   return (
-    <div className="text-center bg-gray-50 mt-16">
+    <div className="text-center bg-gray-50 mt-16 mb-5">
       <h1 className="text-5xl mb-8  text-center font-semibold">
         Current Team Rankings
       </h1>

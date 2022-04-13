@@ -4,7 +4,7 @@ const CircuitCard = ({ circuit, faveCircuit, handleClick, userDoc }) => {
   // console.log(userDoc.favTrack);
   // console.log(circuit);
   return (
-    <div className="wrapper relative justify-center rounded-2xl bg-gray-200 text-gray-900 h-[351px] w-[328px]">
+    <div className=" wrapper relative justify-center rounded-2xl bg-gray-200 text-gray-900 h-[351px] w-[328px]">
       <BsHeartFill
         fill={userDoc?.favTrack?.id === circuit?.id ? "red" : null}
         size="25"
@@ -17,7 +17,7 @@ const CircuitCard = ({ circuit, faveCircuit, handleClick, userDoc }) => {
           alt={circuit.competition.name}
           className="m-auto h-[150px] w-[266px] select-none"
         />
-        {circuit.circuit.id}
+
         <div className="relative px-2 -mt-16  ">
           <div className="bg-white p-3 mt-24 mb-3 rounded-lg shadow-2xl static ">
             <div className="flex justify-center items-baseline">

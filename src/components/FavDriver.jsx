@@ -2,6 +2,10 @@ import React, { useContext } from "react";
 import { AuthContext } from "./Auth";
 const FavDriver = () => {
   const { userDoc } = useContext(AuthContext);
+  let driverSearch = "";
+  if (userDoc?.favDriver[0]?.name) {
+    driverSearch = userDoc?.favDriver[0]?.name.replace(" ", "_");
+  }
 
   return (
     <section className="text-gray-600 body-font mt-2">
@@ -49,11 +53,17 @@ const FavDriver = () => {
           </div>
         </div>
         <div className="lg:w-auto lg:h-auto sm:h-auto sm:w-auto  rounded-lg overflow-hidden mt-6 sm:mt-0">
-          <img
-            className=" object-center sm:h-[360px] lg:h-[30rem] rounded-full "
-            src={userDoc.halfImg[0].img}
-            alt=""
-          />
+          <a
+            className="text-gray-500 "
+            href={`https://en.wikipedia.org/wiki/${driverSearch}`}
+            target="_blank"
+          >
+            <img
+              className=" object-center sm:h-[360px] lg:h-[30rem] rounded-full "
+              src={userDoc.halfImg[0].img}
+              alt=""
+            />
+          </a>
         </div>
       </div>
     </section>
