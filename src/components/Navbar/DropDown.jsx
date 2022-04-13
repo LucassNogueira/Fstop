@@ -12,7 +12,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Dropdown() {
   const { setUserDoc, userDoc, dispatch } = useContext(AuthContext);
   async function handleLogout() {
     await logOut();
@@ -95,7 +95,7 @@ export default function Example() {
                 </Link>
               )}
             </Menu.Item>
-            <Menu.Item>
+            {/* <Menu.Item>
               {({ active }) => (
                 <Link
                   to="/profile"
@@ -111,7 +111,7 @@ export default function Example() {
                   My Profile
                 </Link>
               )}
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item>
               {({ active }) => (
                 <Link
