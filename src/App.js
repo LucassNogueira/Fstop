@@ -17,7 +17,6 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <NavBar />
-
           <Routes>
             <Route exact path="/" element={<Splash />}></Route>
             <Route path="/login" element={<Login />} />

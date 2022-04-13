@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { getAuth } from "firebase/auth";
-import { doc, updateDoc, getFirestore, getDoc } from "firebase/firestore";
+import { doc, getFirestore, getDoc } from "firebase/firestore";
 export const AuthContext = React.createContext();
 export const authReducer = (state, action) => {
+  // console.log(state, action);
   switch (action.type) {
     case "LOGIN":
       return {
         ...state,
         user: action.payload,
       };
+
     case "LOGOUT":
       return {
         ...state,
@@ -30,12 +32,11 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const subscriber = auth.onAuthStateChanged((user) => {
       if (user) {
-        setCurrentUser(user);
+        dispatch({ type: "LOGIN", payload: user });
+        // setCurrentUser(user);
         getDoc(doc(db, "Users", user.uid)).then((snap) => {
           setUserDoc(snap.data());
         });
-      } else {
-        setCurrentUser(null);
       }
     });
 
@@ -45,12 +46,9 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        auth,
         setUserDoc,
         userDoc,
-        currentUser,
-        setCurrentUser,
-        ...state,
+        state,
         dispatch,
       }}
     >

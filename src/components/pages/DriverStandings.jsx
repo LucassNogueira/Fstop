@@ -6,7 +6,7 @@ import { doc, updateDoc, getFirestore, getDoc } from "firebase/firestore";
 import { halfDB } from "../halfimages";
 
 const DriverStandings = () => {
-  const { currentUser, userDoc, setUserDoc } = useContext(AuthContext);
+  const { userDoc, setUserDoc, state } = useContext(AuthContext);
   const [drivers, setDrivers] = useState([]);
   const [faveDriver, setFaveDriver] = useState({});
   const db = getFirestore();
@@ -45,14 +45,14 @@ const DriverStandings = () => {
           newState.favDriver = res.data.response[0];
           return newState;
         });
-        const driverRef = doc(db, "Users", currentUser.uid);
+        const driverRef = doc(db, "Users", state.user.uid);
         setFav(res.data.response[0]);
         updateDoc(driverRef, {
           favDriver: res.data.response[0],
         });
       })
       .catch((error) => console.log(error));
-    const driverRef = doc(db, "Users", currentUser.uid);
+    const driverRef = doc(db, "Users", state.user.uid);
     const half = halfDB.filter((pic) => pic.id === driver.driver.id);
     updateDoc(driverRef, {
       halfImg: half[0],

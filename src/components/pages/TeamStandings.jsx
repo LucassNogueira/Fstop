@@ -4,7 +4,7 @@ import TeamCard from "../Cards/TeamCard";
 import { AuthContext } from "../Auth";
 import { doc, updateDoc, getFirestore } from "firebase/firestore";
 const TeamStandings = () => {
-  const { currentUser, userDoc, setUserDoc } = useContext(AuthContext);
+  const { state, userDoc, setUserDoc } = useContext(AuthContext);
   const [teams, setTeams] = useState([]);
   const [faveTeam, setFaveTeam] = useState("");
   const db = getFirestore();
@@ -21,7 +21,7 @@ const TeamStandings = () => {
   }, []);
 
   const handleClick = (team) => {
-    const docRef = doc(db, "Users", currentUser.uid);
+    const docRef = doc(db, "Users", state.user.uid);
     setFaveTeam(team);
     axios
       .get(`https://v1.formula-1.api-sports.io/teams?id=${team.team.id}`, {

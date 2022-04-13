@@ -32,17 +32,18 @@ export function logOut() {
   return signOut(auth);
 }
 
-export function newDocument(entriesDB, currentUser) {
+export function newDocument(entriesDB, currentUser, displayName) {
   entriesDB
     .doc(currentUser.uid)
     .set({
       uid: currentUser.uid,
+      displayName: displayName,
       firstName: "",
       lastName: "",
       email: currentUser.email,
-      favDriver: {},
-      favTrack: {},
-      favTeam: {},
+      favDriver: null,
+      favTrack: null,
+      favTeam: null,
     })
     .catch((err) => alert(err));
 }

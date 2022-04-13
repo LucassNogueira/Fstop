@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { GiFullMotorcycleHelmet, GiTeamIdea, GiExitDoor } from "react-icons/gi";
@@ -13,18 +13,19 @@ function classNames(...classes) {
 }
 
 export default function Example() {
-  const { currentUser, setCurrentUser, setUserDoc } = useContext(AuthContext);
+  const { setUserDoc, userDoc, dispatch } = useContext(AuthContext);
   async function handleLogout() {
     await logOut();
-    await setCurrentUser(null);
+    // await setCurrentUser(null);
     await setUserDoc(null);
+    await dispatch({ type: "LOGOUT", payload: null });
   }
 
   return (
     <Menu as="div" className="relative inline-block ">
       <div>
         <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-lg font-semibold rounded-md border hover:bg-gray-200 ">
-          {currentUser.displayName}
+          {userDoc?.displayName}
           <FaChevronDown
             className="-mr-1 ml-2 h-4 w-5 mt-2"
             aria-hidden="true"

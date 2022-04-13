@@ -5,7 +5,7 @@ import { AuthContext } from "../Auth";
 import { doc, updateDoc, getFirestore } from "firebase/firestore";
 import { trackDB } from "../trackimages";
 const Circuit = () => {
-  const { currentUser, setUserDoc, userDoc } = useContext(AuthContext);
+  const { setUserDoc, userDoc, state } = useContext(AuthContext);
 
   const [circuits, setCircuits] = useState([]);
   useEffect(() => {
@@ -22,7 +22,7 @@ const Circuit = () => {
 
   const db = getFirestore();
   const handleClick = (circuit) => {
-    const docRef = doc(db, "Users", currentUser.uid);
+    const docRef = doc(db, "Users", state.user.uid);
     updateDoc(docRef, {
       favTrack: circuit,
     });
@@ -34,12 +34,12 @@ const Circuit = () => {
     });
     const trackImg = trackDB.filter((track) => track.id === circuit.circuit.id);
     updateDoc(docRef, {
-      trackImg: trackImg,
+      trackImg: trackImg[0],
     });
     setUserDoc((prevState) => {
       return {
         ...prevState,
-        trackImg: trackImg,
+        trackImg: trackImg[0],
       };
     });
   };

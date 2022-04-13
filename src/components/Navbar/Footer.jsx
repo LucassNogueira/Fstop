@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import logo from "../media/logof1.svg";
 import { AuthContext } from "../Auth";
 const Footer = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { state } = useContext(AuthContext);
   return (
     <footer className="text-gray-900 border-t-2  body-font">
       <div className="container px-5 py-5 mx-auto flex items-center sm:flex-row flex-col">
         <Link
           className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
-          to={!currentUser ? "/" : "/logged"}
+          to={!state.user ? "/" : "/logged"}
         >
           <img alt="logo" className="h-9 relative" src={logo} />
         </Link>

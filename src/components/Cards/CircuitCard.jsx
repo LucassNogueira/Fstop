@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { BsHeartFill } from "react-icons/bs";
-const CircuitCard = ({ circuit, faveCircuit, handleClick, userDoc }) => {
-  // console.log(userDoc.favTrack);
-  // console.log(circuit);
+const CircuitCard = ({ circuit, handleClick, userDoc }) => {
   return (
     <div className=" wrapper relative justify-center rounded-2xl bg-gray-200 text-gray-900 h-[351px] w-[328px]">
       <BsHeartFill

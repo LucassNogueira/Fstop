@@ -60,7 +60,7 @@ const FavDriver = () => {
           >
             <img
               className=" object-center sm:h-[360px] lg:h-[30rem] rounded-full "
-              src={userDoc.halfImg.img}
+              src={userDoc.halfImg?.img}
               alt=""
             />
           </a>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../Auth";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../media/logof1.svg";
@@ -6,7 +6,7 @@ import { getAuth, sendEmailVerification, updateProfile } from "firebase/auth";
 import firebase, { signUp, newDocument } from "../../firebase/base";
 const entriesDB = firebase.firestore().collection("Users");
 const SignUp = () => {
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
   const auth = getAuth();
 
@@ -17,8 +17,9 @@ const SignUp = () => {
       await signUp(email.value, password.value, displayName.value).then(
         (results) => {
           const user = results.user;
-          setCurrentUser(user);
-          newDocument(entriesDB, user);
+          // setCurrentUser(user);
+          dispatch({ type: "LOGIN", payload: user });
+          newDocument(entriesDB, user, displayName.value);
         }
       );
     } catch (error) {
@@ -27,9 +28,7 @@ const SignUp = () => {
     await sendEmailVerification(auth.currentUser).catch((error) =>
       console.log(error)
     );
-    await updateProfile(auth.currentUser, {
-      displayName: displayName.value,
-    }).catch((error) => console.log(error));
+
     navigate("/logged");
   }
   return (

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { AuthContext } from "./Auth";
+
 import { trackDB } from "./trackimages";
 const NextRace = () => {
   const [race, setRace] = useState([]);
-  const { userDoc } = useContext(AuthContext);
+
   useEffect(() => {
     axios
       .get("https://v1.formula-1.api-sports.io/races?season=2022&type=race", {
