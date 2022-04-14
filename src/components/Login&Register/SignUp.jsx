@@ -2,10 +2,11 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../Auth";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../media/logof1.svg";
-import { getAuth, sendEmailVerification, updateProfile } from "firebase/auth";
+import { getAuth, sendEmailVerification } from "firebase/auth";
 import firebase, { signUp, newDocument } from "../../firebase/base";
 const entriesDB = firebase.firestore().collection("Users");
 const SignUp = () => {
+  const Swal = require("sweetalert2");
   const { dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
   const auth = getAuth();
@@ -22,14 +23,17 @@ const SignUp = () => {
           newDocument(entriesDB, user, displayName.value);
         }
       );
+      await sendEmailVerification(auth.currentUser).catch((error) =>
+        console.log(error)
+      );
+      navigate("/logged");
     } catch (error) {
-      console.log(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     }
-    await sendEmailVerification(auth.currentUser).catch((error) =>
-      console.log(error)
-    );
-
-    navigate("/logged");
   }
   return (
     <div className="bg-f1-pic h-screen w-screen fixed top-0 z-[-1] ">
