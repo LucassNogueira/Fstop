@@ -27,7 +27,7 @@ export default function Dropdown() {
         <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-lg font-semibold rounded-md border hover:bg-gray-200 ">
           {userDoc?.displayName}
           <FaChevronDown
-            className="-mr-1 ml-2 h-4 w-5 mt-2"
+            className="-mr-1 ml-2 h-4 w-5 mt-2 animate-bounce "
             aria-hidden="true"
           />
         </Menu.Button>
