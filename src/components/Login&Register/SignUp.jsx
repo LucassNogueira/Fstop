@@ -36,8 +36,8 @@ const SignUp = () => {
     }
   }
   return (
-    <div className="bg-f1-pic h-screen w-screen fixed top-0 z-[-1] ">
-      <div className="mt-40 h-[55%]  flex items-center justify-center sm:px-6 lg:px-8 bg-gray-200 w-[30%] m-auto bg-opacity-80">
+    <div className="bg-f1-pic h-screen bottom-20 w-full ">
+      <div className=" h-[60%] absolute bottom-1/4 left-16 sm:left-1/3 sm:w-[30%] flex items-center px-6 justify-center sm:px-6 lg:px-8 bg-gray-200 w-[70%] m-auto bg-opacity-80">
         <div className="space-y-8">
           <div>
             <img className="mx-auto h-20" src={logo} alt="Workflow" />
