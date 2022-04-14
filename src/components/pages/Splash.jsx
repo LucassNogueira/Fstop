@@ -37,7 +37,7 @@ const Splash = () => {
     //   </div>
     //   <div className="absolute text-center justify-center w-full top-1/3 "></div>
     // </div>
-    <header class="relative flex items-center justify-center h-screen  overflow-x-hidden overflow-y-auto">
+    <header class="relative flex items-center justify-center h-screen mt-14 mb-14  overflow-x-hidden overflow-y-auto">
       <div class="relative z-30 p-5 text-2xl text-white bg-gray-500  w-full bg-opacity-30 ">
         <h1 className=" font-bold text-8xl text-center uppercase w-full   sm-40">
           It's lights out and away we go
