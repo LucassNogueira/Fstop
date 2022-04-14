@@ -28,11 +28,16 @@ const Login = () => {
   }
 
   return (
-    <div className="bg-log-in h-screen w-screen fixed top-0 z-[-1] ">
-      <div className="mt-40 h-[50%] flex items-center justify-center sm:px-6 lg:px-8 bg-gray-200 w-[30%] m-auto bg-opacity-80">
+    <>
+      <div className="bg-log-in h-screen w-full "></div>
+      <div className=" h-[50%]  flex items-center justify-center sm:px-6 lg:px-8 bg-gray-200 w-[30%] m-auto bg-opacity-80">
         <div className="w-10/12 space-y-8">
           <div>
-            <img className="mx-auto h-20" src={logo} alt="Workflow" />
+            <img
+              className="mx-auto h-20 object-cover"
+              src={logo}
+              alt="Workflow"
+            />
             <h2 className="mt-5 text-center text-3xl font-extrabold text-gray-900">
               Login
             </h2>
@@ -67,7 +72,7 @@ const Login = () => {
                 </span>
               </Link>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-8 sm:mx-auto sm:w-full sm:max-w-md">
               <button
                 className=" relative w-4/5 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 type="submit"
@@ -78,7 +83,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
