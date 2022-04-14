@@ -36,7 +36,7 @@ const Splash = () => {
     //   </div>
     //   <div className="absolute text-center justify-center w-full top-1/3 "></div>
     // </div>
-    <header class="relative flex items-center justify-center h-screen  overflow-hidden">
+    <header class="relative flex items-center justify-center h-screen  overflow-x-hidden ">
       <div class="relative z-30 p-5 text-2xl text-white bg-gray-500  w-full bg-opacity-30 ">
         <h1 className=" font-bold text-8xl text-center uppercase w-full   sm-40">
           It's lights out and away we go
@@ -82,7 +82,7 @@ const Splash = () => {
         )}
       </div>
       <video
-        className="absolute z-10 w-auto min-w-full min-h-full max-w-none"
+        className="absolute z-10 w-auto min-w-full min-h-full max-w-none sm:hidden"
         src={vidlink}
         autoPlay
         loop
