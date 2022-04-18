@@ -24,6 +24,11 @@ const NextRace = () => {
   let betterImg = trackDB.filter((image) => {
     return image.id === nextRace?.circuit.id;
   });
+  function formatDate(dateStr) {
+    let [year, month, day] = dateStr.split("-");
+    let newDate = `${month}-${day}-${year}`;
+    return newDate;
+  }
   return (
     <div className="relative shadow-lg bg-gray-5 mt-16">
       <div className=" bg-gray-50 sm:h-72 lg:absolute lg:-ml-1 lg:h-full lg:w-1/3 z-10 ">

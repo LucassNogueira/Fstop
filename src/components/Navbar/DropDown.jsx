@@ -40,7 +40,7 @@ export default function Dropdown() {
   return (
     <Menu as="div" className="relative inline-block ">
       <div>
-        <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-lg font-semibold rounded-md border hover:bg-gray-200 ">
+        <Menu.Button className="inline-flex justify-center bg-indigo-500 w-full px-4 py-2 text-lg font-semibold rounded-md border hover:bg-indigo-600 ">
           {userDoc?.displayName}
           <FaChevronDown
             className="-mr-1 ml-2 h-4 w-5 mt-2 animate-bounce "
