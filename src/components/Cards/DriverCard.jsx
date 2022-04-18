@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { BsHeartFill } from "react-icons/bs";
 import { AuthContext } from "../Auth";
-
-const DriverCard = ({ driver, handleClick }) => {
+import { MdCompare } from "react-icons/md";
+const DriverCard = ({ driver, handleClick, handleCompare, handleCompare2 }) => {
   const { userDoc } = useContext(AuthContext);
 
   return (
-    <div className="wrapper relative justify-center rounded-2xl bg-gray-200 text-gray-900 h-[351px] w-[228px]">
+    <div className="wrapper relative justify-center rounded-2xl bg-gray-200 text-gray-900 h-[390px] w-[231px]">
       <BsHeartFill
         size="25"
         className="relative  left-[85%] top-4 cursor-pointer"
@@ -40,6 +40,20 @@ const DriverCard = ({ driver, handleClick }) => {
                 {!driver.points ? "0" : driver.points}{" "}
               </span>
               <span className="text-sm text-gray-600">Points</span>
+            </div>
+            <div className="flex gap-2 justify-center">
+              <button
+                onClick={() => handleCompare(driver)}
+                className="px-6 py-2 text-sm rounded shadow bg-slate-200 hover:bg-slate-400 text-slate-500 hover:text-black"
+              >
+                {<MdCompare />}
+              </button>
+              <button
+                onClick={() => handleCompare2(driver)}
+                className="px-6 py-2 text-sm rounded shadow bg-slate-200 hover:bg-slate-400 text-slate-500 hover:text-black"
+              >
+                {<MdCompare className="rotate-180	" />}
+              </button>
             </div>
           </div>
         </div>
