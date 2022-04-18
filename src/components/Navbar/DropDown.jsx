@@ -3,24 +3,40 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { GiFullMotorcycleHelmet, GiTeamIdea, GiExitDoor } from "react-icons/gi";
 import { FaFlagCheckered, FaChevronDown } from "react-icons/fa";
-import { ImProfile } from "react-icons/im";
+import { MdOutlineLayersClear } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { logOut } from "../../firebase/base";
 import { AuthContext } from "../Auth";
-
+import { doc, updateDoc, getFirestore, deleteField } from "firebase/firestore";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Dropdown() {
-  const { setUserDoc, userDoc, dispatch } = useContext(AuthContext);
+  const { setUserDoc, userDoc, dispatch, state } = useContext(AuthContext);
   async function handleLogout() {
     await logOut();
     // await setCurrentUser(null);
     await setUserDoc(null);
     await dispatch({ type: "LOGOUT", payload: null });
   }
-
+  const clearFavs = () => {
+    const db = getFirestore();
+    const docRef = doc(db, "Users", state.user.uid);
+    setUserDoc((prevState) => {
+      return {
+        ...prevState,
+        favDriver: null,
+        favTeam: null,
+        favTrack: null,
+      };
+    });
+    updateDoc(docRef, {
+      favTeam: null,
+      favDriver: null,
+      favTrack: null,
+    });
+  };
   return (
     <Menu as="div" className="relative inline-block ">
       <div>
@@ -95,23 +111,23 @@ export default function Dropdown() {
                 </Link>
               )}
             </Menu.Item>
-            {/* <Menu.Item>
+            <Menu.Item>
               {({ active }) => (
-                <Link
-                  to="/profile"
+                <button
+                  onClick={clearFavs}
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "group flex items-center px-4 py-2 text-sm"
                   )}
                 >
-                  <ImProfile
+                  <MdOutlineLayersClear
                     className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
                   />
-                  My Profile
-                </Link>
+                  Clear Favorites
+                </button>
               )}
-            </Menu.Item> */}
+            </Menu.Item>
             <Menu.Item>
               {({ active }) => (
                 <Link
