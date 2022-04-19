@@ -21,14 +21,16 @@ const NextRace = () => {
     return race.status === "Scheduled";
   });
   let nextRace = displayRace[0];
+
   let betterImg = trackDB.filter((image) => {
     return image.id === nextRace?.circuit.id;
   });
   function formatDate(dateStr) {
     let [year, month, day] = dateStr.split("-");
-    let newDate = `${month}-${day}-${year}`;
+    let newDate = `${month}/${day}/${year}`;
     return newDate;
   }
+
   return (
     <div className="relative shadow-lg bg-gray-5 mt-16">
       <div className=" bg-gray-50 sm:h-72 lg:absolute lg:-ml-1 lg:h-full lg:w-1/3 z-10 ">
@@ -81,7 +83,9 @@ const NextRace = () => {
                   Date
                 </dt>
                 <dd className="order-1 text-2xl font-extrabold text-indigo-600 sm:text-3xl">
-                  {displayRace[0]?.date.slice(0, 10)}
+                  {displayRace[0]?.date.slice(0, 10)
+                    ? formatDate(displayRace[0]?.date.slice(0, 10))
+                    : ""}
                 </dd>
               </div>
             </dl>
