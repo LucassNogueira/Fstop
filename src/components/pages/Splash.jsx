@@ -7,41 +7,11 @@ const Splash = () => {
   const { state } = useContext(AuthContext);
 
   return (
-    // <div>
-    //   <div>
-    //     <video className="mt-14" src={vidlink} autoPlay loop muted />
-    //     <div className="absolute text-center justify-center w-full top-1/3 ">
-    //       <h1 className=" font-bold text-8xl uppercase w-full bg-white bg-opacity-60 sm-40">
-    //         It's lights out and away we go
-    //         <p className="text-6xl font-bold m-4 pb-5 ">
-    //           What are you waiting for?
-    //         </p>
-    //       </h1>
-    //       {!state.user ? (
-    //         <div className="flex gap-2 justify-center">
-    //           <Link to="/signup">
-    //             <button className=" px-2.5 py-1.5 border border-gray-300 w-60 text-xl font-medium rounded text-gray-700 bg-white hover:bg-gray-50 ">
-    //               Sign Up
-    //             </button>
-    //           </Link>
-    //           <Link to="/login">
-    //             <button className="px-2.5 py-1.5 border border-gray-300 w-60 text-xl font-medium rounded text-gray-700 bg-white hover:bg-gray-50 ">
-    //               Login
-    //             </button>
-    //           </Link>
-    //         </div>
-    //       ) : (
-    //         ""
-    //       )}
-    //     </div>
-    //   </div>
-    //   <div className="absolute text-center justify-center w-full top-1/3 "></div>
-    // </div>
     <header class="relative flex items-center justify-center h-screen mt-14 mb-14  overflow-x-hidden overflow-y-auto">
-      <div class="relative z-30 p-5 text-2xl text-white bg-gray-500  w-full bg-opacity-30 ">
-        <h1 className=" font-bold text-8xl text-center uppercase w-full   sm-40">
+      <div class="relative z-30 p-5 text-2xl text-white bg-gray-500  w-full bg-opacity-30  ">
+        <h1 className=" font-bold text-5xl text-center uppercase w-full  sm:text-8xl">
           It's lights out and away we go
-          <p className="text-6xl font-bold m-4 pb-5 ">
+          <p className="text-3xl font-bold m-4 pb-5 sm:text-5xl">
             What are you waiting for?
           </p>
         </h1>
@@ -82,18 +52,18 @@ const Splash = () => {
           ""
         )}
       </div>
-      {/* <video
-        className="absolute z-10 w-auto min-w-full min-h-full max-w-none sm:hidden"
+      <video
+        className="absolute object-contain z-10 w-auto min-w-full min-h-full max-w-none "
         src={vidlink}
         autoPlay
         loop
         muted
-      /> */}
-      <img
+      />
+      {/* <img
         src={gif}
         alt="gif"
         className="absolute z-10 w-auto min-w-full min-h-full max-w-none "
-      />
+      /> */}
     </header>
   );
 };

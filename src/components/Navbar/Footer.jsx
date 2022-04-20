@@ -5,7 +5,7 @@ import { AuthContext } from "../Auth";
 const Footer = () => {
   const { state } = useContext(AuthContext);
   return (
-    <footer className="text-gray-900 border-t-2 flex items-center   body-font">
+    <footer className="text-gray-900 border-t-2 flex items-center  body-font">
       <div className="container px-5 py-5 mx-auto flex items-center sm:flex-row flex-col">
         <Link
           className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
