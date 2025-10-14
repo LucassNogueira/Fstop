@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Box, Container, Typography, Card, CardContent, CardMedia, Avatar, Stack } from '@mui/material';
 
 interface NewsPost {
@@ -48,9 +48,8 @@ const newsPosts: NewsPost[] = [
 ];
 
 export default function NewsCards() {
-  const randomPosts = useMemo(() => {
-    return [...newsPosts].sort(() => 0.5 - Math.random()).slice(0, 3);
-  }, []);
+  // Use stable order to prevent hydration mismatch
+  const displayPosts = newsPosts;
 
   return (
     <Box sx={{ py: 8, backgroundColor: 'background.default' }}>
@@ -86,9 +85,9 @@ export default function NewsCards() {
             },
           }}
         >
-          {randomPosts.map((post, index) => (
+          {displayPosts.map((post, index) => (
             <Card
-              key={index}
+              key={post.title}
               sx={{
                 display: 'flex',
                 flexDirection: 'column',

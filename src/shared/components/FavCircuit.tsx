@@ -47,6 +47,7 @@ export default function FavCircuit() {
                 p: 3,
                 borderBottom: 3,
                 borderColor: 'primary.main',
+                minHeight: 280,
               }}
             >
               <Box
