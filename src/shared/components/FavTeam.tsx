@@ -31,6 +31,9 @@ export default function FavTeam() {
           overflow: 'hidden',
           borderRadius: 3,
           width: '100%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
           {/* Logo Section - Full Width */}
@@ -80,7 +83,7 @@ export default function FavTeam() {
           )}
 
           {/* Stats Section - Compact */}
-          <Box sx={{ p: 3, textAlign: 'center', backgroundColor: 'background.paper' }}>
+          <Box sx={{ p: 3, textAlign: 'center', backgroundColor: 'background.paper', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <Typography
               variant="h5"
               component="h3"
