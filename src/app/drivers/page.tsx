@@ -22,8 +22,8 @@ export default function DriversPage() {
   const { user, userDoc, setUserDoc } = useAuth();
   const { data: drivers, isLoading, error } = useGetDriverStandings(2023);
   
-  // Fetch all drivers once and cache them - no params needed!
-  const { data: allDrivers, isLoading: isLoadingAllDrivers, error: allDriversError } = useGetAllDrivers();
+  // Fetch all drivers once and cache them - using season parameter
+  const { data: allDrivers, isLoading: isLoadingAllDrivers, error: allDriversError } = useGetAllDrivers(2023);
   
   const [selectedDriver1, setSelectedDriver1] = useState<string | null>(null);
   const [selectedDriver2, setSelectedDriver2] = useState<string | null>(null);

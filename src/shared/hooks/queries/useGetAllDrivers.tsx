@@ -3,19 +3,19 @@ import { makeF1APICall } from '@/shared/utils/axiosInstance';
 import { F1ApiResponse, DriverDetails } from '@/shared/types/f1Types';
 
 /**
- * Fetch ALL drivers from the F1 API
- * According to the API docs, calling /drivers without params returns all drivers
+ * Fetch ALL drivers from the F1 API for a specific season
+ * The API requires at least one parameter - we use season to get all active drivers
  * This is cached by React Query to avoid repeated API calls
  */
-export const useGetAllDrivers = () => {
+export const useGetAllDrivers = (season: number = 2023) => {
   return useQuery<DriverDetails[]>({
-    queryKey: ['drivers', 'all'],
+    queryKey: ['drivers', 'all', season],
     queryFn: async () => {
-      console.log('Fetching all drivers from API (no params)...');
+      console.log('Fetching all drivers for season', season);
       const response = await makeF1APICall<F1ApiResponse<DriverDetails[]>>({
         url: `/drivers`,
         method: 'GET',
-        // No params - should return all drivers according to API docs
+        params: { season: season.toString() },
       });
       console.log('API Response:', response);
       console.log('Drivers count:', response.response?.length || 0);
