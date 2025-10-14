@@ -33,7 +33,7 @@ export default function DriverCard({
     <Card
       sx={{
         width: 300,
-        height: 450,
+        height: 480,
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
@@ -65,26 +65,31 @@ export default function DriverCard({
         )}
       </IconButton>
 
-      {/* Optimized image section for API images */}
+      {/* High-quality image section - unoptimized for better quality */}
       <Box
         sx={{
           position: 'relative',
           width: '100%',
-          height: 250,
+          height: 280,
           backgroundColor: 'grey.100',
           overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <Image
           src={driver.driver.image}
           alt={driver.driver.name}
           fill
-          sizes="300px"
+          sizes="(max-width: 768px) 300px, 300px"
           style={{
             objectFit: 'contain',
             objectPosition: 'center',
+            imageRendering: '-webkit-optimize-contrast',
           }}
           quality={100}
+          unoptimized={true}
           priority={false}
         />
       </Box>
