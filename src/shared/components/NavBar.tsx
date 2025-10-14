@@ -17,6 +17,11 @@ import {
   AccountCircle, 
   Person,
   Logout,
+  Home as HomeIcon,
+  SportsMotorsports,
+  Groups,
+  Map,
+  Newspaper,
 } from '@mui/icons-material';
 import Image from 'next/image';
 import { useAuth } from '@/shared/contexts/AuthContext';
@@ -70,80 +75,100 @@ export default function NavBar() {
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
           <Link href={user ? '/logged' : '/'} passHref style={{ textDecoration: 'none' }}>
-            <Typography
-              variant="body1"
+            <Box
               sx={{
-                fontWeight: 600,
-                color: 'text.primary',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 0.5,
                 cursor: 'pointer',
                 transition: 'color 0.2s',
+                color: 'text.primary',
                 '&:hover': { color: 'primary.main' },
               }}
             >
-              Home
-            </Typography>
+              <HomeIcon fontSize="small" />
+              <Typography variant="body1" sx={{ fontWeight: 600 }}>
+                Home
+              </Typography>
+            </Box>
           </Link>
 
           {user && (
             <>
               <Link href="/drivers" passHref style={{ textDecoration: 'none' }}>
-                <Typography
-                  variant="body1"
+                <Box
                   sx={{
-                    fontWeight: 600,
-                    color: 'text.primary',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 0.5,
                     cursor: 'pointer',
                     transition: 'color 0.2s',
+                    color: 'text.primary',
                     '&:hover': { color: 'primary.main' },
                   }}
                 >
-                  Drivers
-                </Typography>
+                  <SportsMotorsports fontSize="small" />
+                  <Typography variant="body1" sx={{ fontWeight: 600 }}>
+                    Drivers
+                  </Typography>
+                </Box>
               </Link>
 
               <Link href="/teams" passHref style={{ textDecoration: 'none' }}>
-                <Typography
-                  variant="body1"
+                <Box
                   sx={{
-                    fontWeight: 600,
-                    color: 'text.primary',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 0.5,
                     cursor: 'pointer',
                     transition: 'color 0.2s',
+                    color: 'text.primary',
                     '&:hover': { color: 'primary.main' },
                   }}
                 >
-                  Teams
-                </Typography>
+                  <Groups fontSize="small" />
+                  <Typography variant="body1" sx={{ fontWeight: 600 }}>
+                    Teams
+                  </Typography>
+                </Box>
               </Link>
 
               <Link href="/circuits" passHref style={{ textDecoration: 'none' }}>
-                <Typography
-                  variant="body1"
+                <Box
                   sx={{
-                    fontWeight: 600,
-                    color: 'text.primary',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 0.5,
                     cursor: 'pointer',
                     transition: 'color 0.2s',
+                    color: 'text.primary',
                     '&:hover': { color: 'primary.main' },
                   }}
                 >
-                  Circuits
-                </Typography>
+                  <Map fontSize="small" />
+                  <Typography variant="body1" sx={{ fontWeight: 600 }}>
+                    Circuits
+                  </Typography>
+                </Box>
               </Link>
 
               <Link href="/news" passHref style={{ textDecoration: 'none' }}>
-                <Typography
-                  variant="body1"
+                <Box
                   sx={{
-                    fontWeight: 600,
-                    color: 'text.primary',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 0.5,
                     cursor: 'pointer',
                     transition: 'color 0.2s',
+                    color: 'text.primary',
                     '&:hover': { color: 'primary.main' },
                   }}
                 >
-                  News
-                </Typography>
+                  <Newspaper fontSize="small" />
+                  <Typography variant="body1" sx={{ fontWeight: 600 }}>
+                    News
+                  </Typography>
+                </Box>
               </Link>
 
               <IconButton
