@@ -36,22 +36,22 @@ export default function LoggedPage() {
                   '& > *': {
                     flex: { xs: '1 1 100%', sm: '1 1 45%', md: '0 1 380px' },
                     maxWidth: { xs: '100%', md: '380px' },
-                    minHeight: '500px',
+                    height: '550px',
                   },
                 }}
               >
                 {userDoc?.favDriver && (
-                  <Box>
+                  <Box sx={{ height: '100%' }}>
                     <FavDriver />
                   </Box>
                 )}
                 {userDoc?.favTeam && (
-                  <Box>
+                  <Box sx={{ height: '100%' }}>
                     <FavTeam />
                   </Box>
                 )}
                 {userDoc?.favTrack && (
-                  <Box>
+                  <Box sx={{ height: '100%' }}>
                     <FavCircuit />
                   </Box>
                 )}
