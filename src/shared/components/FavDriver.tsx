@@ -1,20 +1,34 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Box, Typography, Paper, Stack } from '@mui/material';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 export default function FavDriver() {
   const { userDoc } = useAuth();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const paperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current && paperRef.current) {
+      console.log('🏎️ FAVDRIVER MEASUREMENTS:');
+      console.log('  Container height:', containerRef.current.offsetHeight);
+      console.log('  Container clientHeight:', containerRef.current.clientHeight);
+      console.log('  Paper height:', paperRef.current.offsetHeight);
+      console.log('  Paper clientHeight:', paperRef.current.clientHeight);
+      console.log('  Paper scrollHeight:', paperRef.current.scrollHeight);
+      console.log('  Computed height:', window.getComputedStyle(containerRef.current).height);
+      console.log('---');
+    }
+  }, [userDoc]);
 
   if (!userDoc?.favDriver) return null;
 
   const driverSearch = userDoc.favDriver.name.replace(' ', '_');
-  const teamName = (userDoc.favDriver as any).team_name;
 
   return (
-    <Box>
+    <Box ref={containerRef}>
       <Typography
         variant="h5"
         component="h2"
@@ -27,6 +41,7 @@ export default function FavDriver() {
       </Typography>
 
       <Paper 
+        ref={paperRef}
         elevation={6}
         sx={{
           overflow: 'hidden',
