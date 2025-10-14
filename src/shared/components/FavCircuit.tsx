@@ -96,30 +96,20 @@ export default function FavCircuit() {
 
             <Stack 
               direction="row" 
-              spacing={0.5} 
-              alignItems="center" 
-              justifyContent="center"
-              mb={1}
-            >
-              <PlaceIcon sx={{ fontSize: 18, color: 'primary.main' }} />
-              <Typography variant="body1" color="text.secondary">
-                {track.competition.location.city}, {track.competition.location.country}
-              </Typography>
-            </Stack>
-
-            <Stack 
-              direction="row" 
               spacing={3} 
               justifyContent="center"
               divider={<Box sx={{ borderLeft: 1, borderColor: 'divider' }} />}
               sx={{ mt: 2 }}
             >
               <Box>
-                <Typography variant="body2" color="text.secondary" mb={0.5}>
-                  Type
-                </Typography>
+                <Stack direction="row" spacing={0.5} alignItems="center" justifyContent="center" mb={0.5}>
+                  <PlaceIcon sx={{ fontSize: 16, color: 'primary.main' }} />
+                  <Typography variant="body2" color="text.secondary">
+                    Location
+                  </Typography>
+                </Stack>
                 <Typography variant="h4" fontWeight="bold" color="primary">
-                  {track.type || 'Race'}
+                  {track.competition.location.country}
                 </Typography>
               </Box>
 
