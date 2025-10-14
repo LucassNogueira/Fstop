@@ -12,20 +12,25 @@ import NavBar from '@/shared/components/NavBar';
 import Footer from '@/shared/components/Footer';
 import DriverCard from '@/shared/components/DriverCard';
 import { useGetDriverStandings } from '@/shared/hooks/queries/useGetDriverStandings';
+import { useGetAllDrivers, findDriverByName } from '@/shared/hooks/queries/useGetAllDrivers';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/shared/utils/firebase';
-import { DriverDetails, DriverStanding, F1ApiResponse } from '@/shared/types/f1Types';
-import { makeF1APICall } from '@/shared/utils/axiosInstance';
+import { DriverDetails, DriverStanding } from '@/shared/types/f1Types';
 
 export default function DriversPage() {
   const { user, userDoc, setUserDoc } = useAuth();
   const { data: drivers, isLoading, error } = useGetDriverStandings(2023);
   
+  // Fetch all drivers once and cache them - no params needed!
+  const { data: allDrivers, isLoading: isLoadingAllDrivers, error: allDriversError } = useGetAllDrivers();
+  
   const [selectedDriver1, setSelectedDriver1] = useState<string | null>(null);
   const [selectedDriver2, setSelectedDriver2] = useState<string | null>(null);
-  const [compare1Details, setCompare1Details] = useState<DriverDetails | null>(null);
-  const [compare2Details, setCompare2Details] = useState<DriverDetails | null>(null);
+
+  // Use cached driver data instead of making API calls
+  const compare1Details = findDriverByName(allDrivers, selectedDriver1 || '');
+  const compare2Details = findDriverByName(allDrivers, selectedDriver2 || '');
 
   const handleFavoriteClick = async (driver: DriverStanding) => {
     if (!user) {
@@ -36,19 +41,17 @@ export default function DriversPage() {
       console.error('Firestore not initialized');
       return;
     }
+    if (!allDrivers) {
+      console.warn('Driver data not loaded yet');
+      return;
+    }
 
     try {
-      // Fetch driver details only when favoriting
-      const response = await makeF1APICall<F1ApiResponse<DriverDetails[]>>({
-        url: `/drivers`,
-        method: 'GET',
-        params: { search: driver.driver.name },
-      });
-      
-      const driverDetails = response.response?.[0];
+      // Use cached driver details instead of making an API call
+      const driverDetails = findDriverByName(allDrivers, driver.driver.name);
       
       if (!driverDetails) {
-        console.error('Driver details not found for:', driver.driver.name);
+        console.error('Driver details not found in cache for:', driver.driver.name);
         return;
       }
 
@@ -67,26 +70,12 @@ export default function DriversPage() {
     }
   };
 
-  const handleCompare1 = async (driver: DriverStanding) => {
+  const handleCompare1 = (driver: DriverStanding) => {
     setSelectedDriver1(driver.driver.name);
-    // Fetch driver details for comparison
-    const response = await makeF1APICall<F1ApiResponse<DriverDetails[]>>({
-      url: `/drivers`,
-      method: 'GET',
-      params: { search: driver.driver.name },
-    });
-    setCompare1Details(response.response?.[0] || null);
   };
 
-  const handleCompare2 = async (driver: DriverStanding) => {
+  const handleCompare2 = (driver: DriverStanding) => {
     setSelectedDriver2(driver.driver.name);
-    // Fetch driver details for comparison
-    const response = await makeF1APICall<F1ApiResponse<DriverDetails[]>>({
-      url: `/drivers`,
-      method: 'GET',
-      params: { search: driver.driver.name },
-    });
-    setCompare2Details(response.response?.[0] || null);
   };
 
   if (isLoading) {
