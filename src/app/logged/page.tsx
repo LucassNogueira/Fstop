@@ -30,7 +30,7 @@ export default function LoggedPage() {
                 direction="row"
                 spacing={3}
                 justifyContent="center"
-                alignItems="stretch"
+                alignItems="flex-start"
                 flexWrap="wrap"
                 sx={{
                   '& > *': {

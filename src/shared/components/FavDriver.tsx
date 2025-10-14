@@ -20,7 +20,7 @@ export default function FavDriver() {
         fontWeight="bold"
         textAlign="center"
         mb={2}
-        sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' } }}
+        sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' }, pt: 0 }}
       >
         Favorite Driver
       </Typography>
