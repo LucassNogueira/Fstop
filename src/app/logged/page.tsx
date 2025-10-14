@@ -6,6 +6,8 @@ import NavBar from '@/shared/components/NavBar';
 import Footer from '@/shared/components/Footer';
 import NextRace from '@/shared/components/NextRace';
 import FavDriver from '@/shared/components/FavDriver';
+import FavTeam from '@/shared/components/FavTeam';
+import FavCircuit from '@/shared/components/FavCircuit';
 import NewsCards from '@/shared/components/NewsCard';
 import { useAuth } from '@/shared/contexts/AuthContext';
 
@@ -18,8 +20,8 @@ export default function LoggedPage() {
       <Box sx={{ minHeight: '100vh', pt: 8 }}>
         <NextRace />
         {userDoc?.favDriver && <FavDriver />}
-        {/* {userDoc?.favTrack && <FavTrack />}
-        {userDoc?.favTeam && <FavTeam />} */}
+        {userDoc?.favTeam && <FavTeam />}
+        {userDoc?.favTrack && <FavCircuit />}
         <NewsCards />
       </Box>
       <Footer />
