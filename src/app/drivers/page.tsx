@@ -16,7 +16,6 @@ import { useGetAllDrivers, findDriverByName } from '@/shared/hooks/queries/useGe
 import { useAuth } from '@/shared/contexts/AuthContext';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/shared/utils/firebase';
-import { halfBodyImages } from '@/shared/utils/imageData';
 import { DriverDetails, DriverStanding } from '@/shared/types/f1Types';
 
 export default function DriversPage() {
@@ -50,17 +49,9 @@ export default function DriversPage() {
         favDriver: driverDetails,
       });
 
-      const halfImg = halfBodyImages.find((img) => img.id === driver.driver.id);
-      if (halfImg) {
-        await updateDoc(driverRef, {
-          halfImg: halfImg,
-        });
-      }
-
       setUserDoc((prevState) => ({
         ...prevState!,
         favDriver: driverDetails,
-        halfImg: halfImg || null,
       }));
     } catch (error) {
       console.error('Error setting favorite driver:', error);

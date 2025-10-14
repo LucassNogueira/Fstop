@@ -1,27 +1,4 @@
-import { HalfBodyImage, TrackImage } from '@/shared/types/f1Types';
-
-export const halfBodyImages: HalfBodyImage[] = [
-  { id: 34, img: '/media/halfbodyimg/charles_leclerc.jpg' },
-  { id: 24, img: '/media/halfbodyimg/carlos_sainz.jpg' },
-  { id: 25, img: '/media/halfbodyimg/max_verstappen.jpg' },
-  { id: 51, img: '/media/halfbodyimg/george_russell.jpg' },
-  { id: 20, img: '/media/halfbodyimg/lewis_hamilton.jpg' },
-  { id: 28, img: '/media/halfbodyimg/esteban_ocon.jpg' },
-  { id: 10, img: '/media/halfbodyimg/sergio_perez.jpg' },
-  { id: 2, img: '/media/halfbodyimg/kevin_magnussen.jpg' },
-  { id: 5, img: '/media/halfbodyimg/valtteri_bottas.jpg' },
-  { id: 49, img: '/media/halfbodyimg/lando_norris.jpg' },
-  { id: 82, img: '/media/halfbodyimg/yuki_tsunoda.jpg' },
-  { id: 36, img: '/media/halfbodyimg/pierre_gasly.jpg' },
-  { id: 4, img: '/media/halfbodyimg/fernando_alonso.jpg' },
-  { id: 83, img: '/media/halfbodyimg/zhou_guanyu.jpg' },
-  { id: 80, img: '/media/halfbodyimg/mick_schumacher.jpg' },
-  { id: 31, img: '/media/halfbodyimg/lance_stroll.jpg' },
-  { id: 6, img: '/media/halfbodyimg/nico_hulkenberg.png' },
-  { id: 50, img: '/media/halfbodyimg/alexander_albon.jpg' },
-  { id: 14, img: '/media/halfbodyimg/daniel_ricciardo.jpg' },
-  { id: 62, img: '/media/halfbodyimg/nicholas_latifi.jpg' },
-];
+import { TrackImage } from '@/shared/types/f1Types';
 
 export const trackImages: TrackImage[] = [
   { id: 2, img: '/media/trackimg/2.png' },
@@ -47,10 +24,6 @@ export const trackImages: TrackImage[] = [
   { id: 22, img: '/media/trackimg/22.png' },
   { id: 23, img: '/media/trackimg/23.png' },
 ];
-
-export const getDriverImage = (driverId: number): string | undefined => {
-  return halfBodyImages.find((img) => img.id === driverId)?.img;
-};
 
 export const getTrackImage = (circuitId: number): string | undefined => {
   return trackImages.find((img) => img.id === circuitId)?.img;

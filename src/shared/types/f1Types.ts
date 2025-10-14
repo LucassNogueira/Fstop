@@ -91,11 +91,6 @@ export interface Race {
 }
 
 // User Types
-export interface HalfBodyImage {
-  id: number;
-  img: string;
-}
-
 export interface TrackImage {
   id: number;
   img: string;
@@ -110,7 +105,6 @@ export interface UserDocument {
   favDriver: DriverDetails | null;
   favTrack: Race | null;
   favTeam: TeamDetails | null;
-  halfImg: HalfBodyImage | null;
   trackImg: TrackImage | null;
 }
 

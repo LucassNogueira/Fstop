@@ -39,7 +39,6 @@ export async function createUserDocument(
     favDriver: null,
     favTrack: null,
     favTeam: null,
-    halfImg: null,
     trackImg: null,
   });
 }

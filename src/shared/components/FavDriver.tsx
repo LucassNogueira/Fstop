@@ -84,7 +84,7 @@ export default function FavDriver() {
             </Paper>
           </Box>
 
-          {userDoc.halfImg && (
+          {userDoc.favDriver.image && (
             <Box sx={{ flex: { lg: '0 0 42%' } }}>
               <Box
                 sx={{
@@ -99,7 +99,7 @@ export default function FavDriver() {
                   rel="noopener noreferrer"
                 >
                   <Image
-                    src={userDoc.halfImg.img}
+                    src={userDoc.favDriver.image}
                     alt={userDoc.favDriver.name}
                     width={400}
                     height={480}
