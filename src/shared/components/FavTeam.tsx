@@ -28,7 +28,7 @@ export default function FavTeam() {
   const team = userDoc.favTeam;
 
   return (
-    <Box ref={containerRef}>
+    <Box ref={containerRef} sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Typography
         variant="h5"
         component="h2"
@@ -47,7 +47,7 @@ export default function FavTeam() {
           overflow: 'hidden',
           borderRadius: 3,
           width: '100%',
-          height: '100%',
+          flex: 1,
           display: 'flex',
           flexDirection: 'column',
         }}
