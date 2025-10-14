@@ -23,7 +23,17 @@ export default function DriversPage() {
   const { data: drivers, isLoading, error } = useGetDriverStandings(2023);
   
   // Fetch all drivers once and cache them - no individual API calls needed!
-  const { data: allDrivers } = useGetAllDrivers();
+  const { data: allDrivers, isLoading: isLoadingAllDrivers, error: allDriversError } = useGetAllDrivers();
+  
+  // Debug logging
+  React.useEffect(() => {
+    if (allDriversError) {
+      console.error('Error loading all drivers:', allDriversError);
+    }
+    if (allDrivers) {
+      console.log('All drivers loaded:', allDrivers.length, 'drivers');
+    }
+  }, [allDrivers, allDriversError]);
   
   const [selectedDriver1, setSelectedDriver1] = useState<string | null>(null);
   const [selectedDriver2, setSelectedDriver2] = useState<string | null>(null);

@@ -10,16 +10,21 @@ export const useGetAllDrivers = () => {
   return useQuery<DriverDetails[]>({
     queryKey: ['drivers', 'all'],
     queryFn: async () => {
+      console.log('Fetching all drivers from API...');
       const response = await makeF1APICall<F1ApiResponse<DriverDetails[]>>({
         url: `/drivers`,
         method: 'GET',
       });
-      return response.response;
+      console.log('API Response:', response);
+      console.log('Drivers count:', response.response?.length || 0);
+      return response.response || [];
     },
     // Cache for 1 hour since driver data doesn't change often
     staleTime: 1000 * 60 * 60,
     // Keep in cache even when not being used
-    gcTime: 1000 * 60 * 60 * 24, // 24 hours (formerly cacheTime in v4)
+    gcTime: 1000 * 60 * 60 * 24, // 24 hours
+    retry: 2,
+    retryDelay: 1000,
   });
 };
 
