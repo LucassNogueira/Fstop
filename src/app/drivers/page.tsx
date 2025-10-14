@@ -12,35 +12,20 @@ import NavBar from '@/shared/components/NavBar';
 import Footer from '@/shared/components/Footer';
 import DriverCard from '@/shared/components/DriverCard';
 import { useGetDriverStandings } from '@/shared/hooks/queries/useGetDriverStandings';
-import { useGetAllDrivers, findDriverByName } from '@/shared/hooks/queries/useGetAllDrivers';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/shared/utils/firebase';
-import { DriverDetails, DriverStanding } from '@/shared/types/f1Types';
+import { DriverDetails, DriverStanding, F1ApiResponse } from '@/shared/types/f1Types';
+import { makeF1APICall } from '@/shared/utils/axiosInstance';
 
 export default function DriversPage() {
   const { user, userDoc, setUserDoc } = useAuth();
   const { data: drivers, isLoading, error } = useGetDriverStandings(2023);
   
-  // Fetch all drivers once and cache them - no individual API calls needed!
-  const { data: allDrivers, isLoading: isLoadingAllDrivers, error: allDriversError } = useGetAllDrivers();
-  
-  // Debug logging
-  React.useEffect(() => {
-    if (allDriversError) {
-      console.error('Error loading all drivers:', allDriversError);
-    }
-    if (allDrivers) {
-      console.log('All drivers loaded:', allDrivers.length, 'drivers');
-    }
-  }, [allDrivers, allDriversError]);
-  
   const [selectedDriver1, setSelectedDriver1] = useState<string | null>(null);
   const [selectedDriver2, setSelectedDriver2] = useState<string | null>(null);
-
-  // Use cached driver data instead of making API calls
-  const compare1 = findDriverByName(allDrivers, selectedDriver1 || '');
-  const compare2 = findDriverByName(allDrivers, selectedDriver2 || '');
+  const [compare1Details, setCompare1Details] = useState<DriverDetails | null>(null);
+  const [compare2Details, setCompare2Details] = useState<DriverDetails | null>(null);
 
   const handleFavoriteClick = async (driver: DriverStanding) => {
     if (!user) {
@@ -51,19 +36,19 @@ export default function DriversPage() {
       console.error('Firestore not initialized');
       return;
     }
-    if (!allDrivers) {
-      console.warn('Driver data not loaded yet');
-      return;
-    }
 
     try {
-      // Use cached driver details instead of making an API call
-      const driverDetails = findDriverByName(allDrivers, driver.driver.name);
+      // Fetch driver details only when favoriting
+      const response = await makeF1APICall<F1ApiResponse<DriverDetails[]>>({
+        url: `/drivers`,
+        method: 'GET',
+        params: { search: driver.driver.name },
+      });
+      
+      const driverDetails = response.response?.[0];
       
       if (!driverDetails) {
-        console.error('Driver details not found in cache for:', driver.driver.name);
-        console.log('Available drivers:', allDrivers?.map(d => d.name));
-        console.log('Searched for:', driver.driver.name);
+        console.error('Driver details not found for:', driver.driver.name);
         return;
       }
 
@@ -82,12 +67,26 @@ export default function DriversPage() {
     }
   };
 
-  const handleCompare1 = (driver: DriverStanding) => {
+  const handleCompare1 = async (driver: DriverStanding) => {
     setSelectedDriver1(driver.driver.name);
+    // Fetch driver details for comparison
+    const response = await makeF1APICall<F1ApiResponse<DriverDetails[]>>({
+      url: `/drivers`,
+      method: 'GET',
+      params: { search: driver.driver.name },
+    });
+    setCompare1Details(response.response?.[0] || null);
   };
 
-  const handleCompare2 = (driver: DriverStanding) => {
+  const handleCompare2 = async (driver: DriverStanding) => {
     setSelectedDriver2(driver.driver.name);
+    // Fetch driver details for comparison
+    const response = await makeF1APICall<F1ApiResponse<DriverDetails[]>>({
+      url: `/drivers`,
+      method: 'GET',
+      params: { search: driver.driver.name },
+    });
+    setCompare2Details(response.response?.[0] || null);
   };
 
   if (isLoading) {
@@ -138,25 +137,25 @@ export default function DriversPage() {
             Current Driver Rankings
           </Typography>
 
-          {compare1 && compare2 && (
+          {compare1Details && compare2Details && (
             <Box sx={{ mb: 4, p: 3, backgroundColor: 'background.paper', borderRadius: 2 }}>
               <Typography variant="h5" mb={2}>
                 Comparison
               </Typography>
               <Box sx={{ display: 'flex', gap: 4, justifyContent: 'space-around' }}>
                 <Box>
-                  <Typography variant="h6">{compare1.name}</Typography>
-                  <Typography>Nationality: {compare1.nationality}</Typography>
-                  <Typography>Career Points: {compare1.career_points}</Typography>
-                  <Typography>Podiums: {compare1.podiums}</Typography>
-                  <Typography>Championships: {compare1.world_championships}</Typography>
+                  <Typography variant="h6">{compare1Details.name}</Typography>
+                  <Typography>Nationality: {compare1Details.nationality}</Typography>
+                  <Typography>Career Points: {compare1Details.career_points}</Typography>
+                  <Typography>Podiums: {compare1Details.podiums}</Typography>
+                  <Typography>Championships: {compare1Details.world_championships}</Typography>
                 </Box>
                 <Box>
-                  <Typography variant="h6">{compare2.name}</Typography>
-                  <Typography>Nationality: {compare2.nationality}</Typography>
-                  <Typography>Career Points: {compare2.career_points}</Typography>
-                  <Typography>Podiums: {compare2.podiums}</Typography>
-                  <Typography>Championships: {compare2.world_championships}</Typography>
+                  <Typography variant="h6">{compare2Details.name}</Typography>
+                  <Typography>Nationality: {compare2Details.nationality}</Typography>
+                  <Typography>Career Points: {compare2Details.career_points}</Typography>
+                  <Typography>Podiums: {compare2Details.podiums}</Typography>
+                  <Typography>Championships: {compare2Details.world_championships}</Typography>
                 </Box>
               </Box>
             </Box>
