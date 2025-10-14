@@ -109,32 +109,32 @@ export default function FavDriver() {
               divider={<Box sx={{ borderLeft: 1, borderColor: 'divider' }} />}
               sx={{ mt: 2 }}
             >
-              <Box>
-                <Typography variant="body2" color="text.secondary" mb={0.5}>
+              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
+                <Typography variant="body2" color="text.secondary" mb={0.5} noWrap>
                   Position
                 </Typography>
-                <Typography variant="h4" fontWeight="bold" color="primary">
+                <Typography variant="h4" fontWeight="bold" color="primary" noWrap>
                   {(userDoc.favDriver as any).position || '-'}
                 </Typography>
               </Box>
 
-              <Box>
-                <Typography variant="body2" color="text.secondary" mb={0.5}>
+              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
+                <Typography variant="body2" color="text.secondary" mb={0.5} noWrap>
                   Points
                 </Typography>
-                <Typography variant="h4" fontWeight="bold" color="primary">
+                <Typography variant="h4" fontWeight="bold" color="primary" noWrap>
                   {(userDoc.favDriver as any).points || userDoc.favDriver.career_points || '-'}
                 </Typography>
               </Box>
 
-              <Box>
+              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
                 <Stack direction="row" spacing={0.5} alignItems="center" justifyContent="center" mb={0.5}>
                   <EmojiEventsIcon sx={{ fontSize: 16, color: 'warning.main' }} />
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color="text.secondary" noWrap>
                     Wins
                   </Typography>
                 </Stack>
-                <Typography variant="h4" fontWeight="bold" color="primary">
+                <Typography variant="h4" fontWeight="bold" color="primary" noWrap>
                   {(userDoc.favDriver as any).wins || 0}
                 </Typography>
               </Box>

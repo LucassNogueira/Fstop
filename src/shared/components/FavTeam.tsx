@@ -101,32 +101,32 @@ export default function FavTeam() {
               divider={<Box sx={{ borderLeft: 1, borderColor: 'divider' }} />}
               sx={{ mt: 2 }}
             >
-              <Box>
-                <Typography variant="body2" color="text.secondary" mb={0.5}>
+              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
+                <Typography variant="body2" color="text.secondary" mb={0.5} noWrap>
                   Base
                 </Typography>
-                <Typography variant="h4" fontWeight="bold" color="primary">
+                <Typography variant="h4" fontWeight="bold" color="primary" noWrap sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {team.base || 'N/A'}
                 </Typography>
               </Box>
 
-              <Box>
-                <Typography variant="body2" color="text.secondary" mb={0.5}>
-                  First Entry
+              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
+                <Typography variant="body2" color="text.secondary" mb={0.5} noWrap>
+                  Entry
                 </Typography>
-                <Typography variant="h4" fontWeight="bold" color="primary">
+                <Typography variant="h4" fontWeight="bold" color="primary" noWrap>
                   {team.first_team_entry || 'N/A'}
                 </Typography>
               </Box>
 
-              <Box>
+              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
                 <Stack direction="row" spacing={0.5} alignItems="center" justifyContent="center" mb={0.5}>
                   <EmojiEventsIcon sx={{ fontSize: 16, color: 'warning.main' }} />
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color="text.secondary" noWrap>
                     Titles
                   </Typography>
                 </Stack>
-                <Typography variant="h4" fontWeight="bold" color="primary">
+                <Typography variant="h4" fontWeight="bold" color="primary" noWrap>
                   {team.world_championships || 0}
                 </Typography>
               </Box>

@@ -101,32 +101,32 @@ export default function FavCircuit() {
               divider={<Box sx={{ borderLeft: 1, borderColor: 'divider' }} />}
               sx={{ mt: 2 }}
             >
-              <Box>
+              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
                 <Stack direction="row" spacing={0.5} alignItems="center" justifyContent="center" mb={0.5}>
                   <PlaceIcon sx={{ fontSize: 16, color: 'primary.main' }} />
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color="text.secondary" noWrap>
                     Location
                   </Typography>
                 </Stack>
-                <Typography variant="h4" fontWeight="bold" color="primary">
+                <Typography variant="h4" fontWeight="bold" color="primary" noWrap sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {track.competition.location.country}
                 </Typography>
               </Box>
 
-              <Box>
-                <Typography variant="body2" color="text.secondary" mb={0.5}>
+              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
+                <Typography variant="body2" color="text.secondary" mb={0.5} noWrap>
                   Laps
                 </Typography>
-                <Typography variant="h4" fontWeight="bold" color="primary">
+                <Typography variant="h4" fontWeight="bold" color="primary" noWrap>
                   {track.laps?.total || 'N/A'}
                 </Typography>
               </Box>
 
-              <Box>
-                <Typography variant="body2" color="text.secondary" mb={0.5}>
+              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
+                <Typography variant="body2" color="text.secondary" mb={0.5} noWrap>
                   Distance
                 </Typography>
-                <Typography variant="h4" fontWeight="bold" color="primary">
+                <Typography variant="h4" fontWeight="bold" color="primary" noWrap sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {track.distance || 'N/A'}
                 </Typography>
               </Box>
