@@ -15,7 +15,6 @@ import { useGetRaces } from '@/shared/hooks/queries/useGetRaces';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/shared/utils/firebase';
-import { trackImages } from '@/shared/utils/imageData';
 import { Race } from '@/shared/types/f1Types';
 
 export default function CircuitsPage() {
@@ -31,17 +30,9 @@ export default function CircuitsPage() {
         favTrack: circuit,
       });
 
-      const trackImg = trackImages.find((track) => track.id === circuit.circuit.id);
-      if (trackImg) {
-        await updateDoc(circuitRef, {
-          trackImg: trackImg,
-        });
-      }
-
       setUserDoc((prevState) => ({
         ...prevState!,
         favTrack: circuit,
-        trackImg: trackImg || null,
       }));
     } catch (error) {
       console.error('Error setting favorite circuit:', error);

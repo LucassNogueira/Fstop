@@ -4,7 +4,6 @@ import React, { useMemo } from 'react';
 import { Box, Typography, Stack, Paper } from '@mui/material';
 import Image from 'next/image';
 import { useGetRaces } from '@/shared/hooks/queries/useGetRaces';
-import { getTrackImage } from '@/shared/utils/imageData';
 import { format } from 'date-fns';
 
 export default function NextRace() {
@@ -13,8 +12,6 @@ export default function NextRace() {
   const nextRace = useMemo(() => {
     return races?.find((race) => race.status === 'Scheduled');
   }, [races]);
-
-  const trackImage = nextRace ? getTrackImage(nextRace.circuit.id) : null;
 
   if (!nextRace) return null;
 
@@ -42,20 +39,22 @@ export default function NextRace() {
       <Stack direction={{ xs: 'column', lg: 'row' }}>
         <Box
           sx={{
+            position: 'relative',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: 'background.default',
             p: 3,
             flex: { lg: '0 0 33%' },
+            minHeight: 400,
           }}
         >
-          {trackImage && (
+          {nextRace.circuit.image && (
             <Image
-              src={trackImage}
+              src={nextRace.circuit.image}
               alt={nextRace.circuit.name}
-              width={400}
-              height={400}
+              fill
+              sizes="400px"
               style={{ objectFit: 'contain' }}
             />
           )}

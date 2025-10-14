@@ -91,11 +91,6 @@ export interface Race {
 }
 
 // User Types
-export interface TrackImage {
-  id: number;
-  img: string;
-}
-
 export interface UserDocument {
   uid: string;
   displayName: string;
@@ -105,7 +100,6 @@ export interface UserDocument {
   favDriver: DriverDetails | null;
   favTrack: Race | null;
   favTeam: TeamDetails | null;
-  trackImg: TrackImage | null;
 }
 
 // API Response Types
