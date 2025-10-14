@@ -12,46 +12,39 @@ import NavBar from '@/shared/components/NavBar';
 import Footer from '@/shared/components/Footer';
 import DriverCard from '@/shared/components/DriverCard';
 import { useGetDriverStandings } from '@/shared/hooks/queries/useGetDriverStandings';
-import { useGetAllDrivers, findDriverByName } from '@/shared/hooks/queries/useGetAllDrivers';
+import { useGetDriverDetails } from '@/shared/hooks/queries/useGetDriverDetails';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/shared/utils/firebase';
-import { DriverDetails, DriverStanding } from '@/shared/types/f1Types';
+import { DriverStanding } from '@/shared/types/f1Types';
+import { makeF1APICall } from '@/shared/utils/axiosInstance';
 
 export default function DriversPage() {
   const { user, userDoc, setUserDoc } = useAuth();
   const { data: drivers, isLoading, error } = useGetDriverStandings(2023);
   
-  // Fetch all drivers once and cache them - using search parameter
-  const { data: allDrivers, isLoading: isLoadingAllDrivers, error: allDriversError } = useGetAllDrivers();
-  
   const [selectedDriver1, setSelectedDriver1] = useState<string | null>(null);
   const [selectedDriver2, setSelectedDriver2] = useState<string | null>(null);
 
-  // Use cached driver data instead of making API calls
-  const compare1Details = findDriverByName(allDrivers, selectedDriver1 || '');
-  const compare2Details = findDriverByName(allDrivers, selectedDriver2 || '');
+  // Fetch driver details on-demand - React Query caches automatically
+  const { data: compare1Details } = useGetDriverDetails(selectedDriver1);
+  const { data: compare2Details } = useGetDriverDetails(selectedDriver2);
 
   const handleFavoriteClick = async (driver: DriverStanding) => {
-    if (!user) {
-      console.warn('User not logged in');
-      return;
-    }
-    if (!db) {
-      console.error('Firestore not initialized');
-      return;
-    }
-    if (!allDrivers) {
-      console.warn('Driver data not loaded yet');
-      return;
-    }
+    if (!user || !db) return;
 
     try {
-      // Use cached driver details instead of making an API call
-      const driverDetails = findDriverByName(allDrivers, driver.driver.name);
+      // Fetch driver details (or use cached if already fetched)
+      const response = await makeF1APICall<{ response: any[] }>({
+        url: `/drivers`,
+        method: 'GET',
+        params: { search: driver.driver.name },
+      });
+      
+      const driverDetails = response.response?.[0];
       
       if (!driverDetails) {
-        console.error('Driver details not found in cache for:', driver.driver.name);
+        console.error('Driver details not found for:', driver.driver.name);
         return;
       }
 
