@@ -51,7 +51,9 @@ export default function DriversPage() {
       const driverDetails = findDriverByName(allDrivers, driver.driver.name);
       
       if (!driverDetails) {
-        console.error('Driver details not found in cache');
+        console.error('Driver details not found in cache for:', driver.driver.name);
+        console.log('Available drivers:', allDrivers?.map(d => d.name));
+        console.log('Searched for:', driver.driver.name);
         return;
       }
 

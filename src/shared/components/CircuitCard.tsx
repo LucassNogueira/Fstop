@@ -27,8 +27,8 @@ export default function CircuitCard({
   return (
     <Card
       sx={{
-        width: 320,
-        minHeight: 400,
+        width: 300,
+        minHeight: 380,
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
@@ -60,17 +60,33 @@ export default function CircuitCard({
         )}
       </IconButton>
 
-      <CardMedia
-        component="img"
-        height="200"
-        image={circuit.circuit.image}
-        alt={circuit.competition.name}
+      {/* Native size image - no scaling blur */}
+      <Box
         sx={{
-          objectFit: 'contain',
+          width: '100%',
+          minHeight: 160,
+          maxHeight: 220,
           backgroundColor: 'grey.100',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
           p: 2,
         }}
-      />
+      >
+        <img
+          src={circuit.circuit.image}
+          alt={circuit.competition.name}
+          style={{
+            maxWidth: '100%',
+            maxHeight: '220px',
+            width: 'auto',
+            height: 'auto',
+            objectFit: 'contain',
+          }}
+          loading="lazy"
+        />
+      </Box>
 
       <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 1.5, pb: 2 }}>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>

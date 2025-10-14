@@ -32,8 +32,8 @@ export default function DriverCard({
   return (
     <Card
       sx={{
-        width: 300,
-        minHeight: 450,
+        width: 280,
+        minHeight: 420,
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
@@ -69,14 +69,14 @@ export default function DriverCard({
       <Box
         sx={{
           width: '100%',
-          minHeight: 200,
-          maxHeight: 300,
+          minHeight: 180,
+          maxHeight: 260,
           backgroundColor: 'grey.100',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'hidden',
-          p: 1,
+          p: 1.5,
         }}
       >
         <img
@@ -84,7 +84,7 @@ export default function DriverCard({
           alt={driver.driver.name}
           style={{
             maxWidth: '100%',
-            maxHeight: '300px',
+            maxHeight: '260px',
             width: 'auto',
             height: 'auto',
             objectFit: 'contain',

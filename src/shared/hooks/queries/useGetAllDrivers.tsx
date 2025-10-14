@@ -25,15 +25,38 @@ export const useGetAllDrivers = () => {
 
 /**
  * Helper function to find a specific driver from the cached list
+ * Supports partial matching and handles name variations
  */
 export const findDriverByName = (
   drivers: DriverDetails[] | undefined,
   name: string
 ): DriverDetails | undefined => {
   if (!drivers || !name) return undefined;
-  return drivers.find(
-    (driver) => driver.name.toLowerCase() === name.toLowerCase()
+  
+  const searchName = name.toLowerCase().trim();
+  
+  // Try exact match first
+  let driver = drivers.find(
+    (d) => d.name.toLowerCase().trim() === searchName
   );
+  
+  // If no exact match, try partial match (handles "Max Verstappen" vs "Verstappen")
+  if (!driver) {
+    driver = drivers.find((d) => {
+      const driverName = d.name.toLowerCase().trim();
+      return driverName.includes(searchName) || searchName.includes(driverName);
+    });
+  }
+  
+  // If still no match, try matching by last name only
+  if (!driver) {
+    const lastName = searchName.split(' ').pop() || '';
+    driver = drivers.find((d) => 
+      d.name.toLowerCase().includes(lastName)
+    );
+  }
+  
+  return driver;
 };
 
 /**
