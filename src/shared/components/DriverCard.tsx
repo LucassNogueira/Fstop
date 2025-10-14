@@ -4,7 +4,6 @@ import React from 'react';
 import {
   Card,
   CardContent,
-  CardMedia,
   Typography,
   Box,
   Chip,
@@ -12,6 +11,7 @@ import {
   Button,
 } from '@mui/material';
 import { Favorite, FavoriteBorder, CompareArrows } from '@mui/icons-material';
+import Image from 'next/image';
 import { DriverStanding } from '@/shared/types/f1Types';
 
 interface DriverCardProps {
@@ -32,14 +32,16 @@ export default function DriverCard({
   return (
     <Card
       sx={{
-        width: 280,
-        height: 450,
+        width: 320,
+        height: 500,
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
+        overflow: 'hidden',
         '&:hover': {
           transform: 'translateY(-4px)',
           transition: 'transform 0.2s',
+          boxShadow: 6,
         },
       }}
     >
@@ -49,8 +51,11 @@ export default function DriverCard({
           position: 'absolute',
           top: 8,
           right: 8,
-          zIndex: 1,
+          zIndex: 2,
           backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          '&:hover': {
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+          },
         }}
       >
         {isFavorite ? (
@@ -60,66 +65,108 @@ export default function DriverCard({
         )}
       </IconButton>
 
-      <CardMedia
-        component="img"
-        height="240"
-        image={driver.driver.image}
-        alt={driver.driver.name}
+      {/* Larger, clearer image section */}
+      <Box
         sx={{
-          objectFit: 'contain',
+          position: 'relative',
+          width: '100%',
+          height: 300,
           backgroundColor: 'grey.100',
+          overflow: 'hidden',
         }}
-      />
+      >
+        <Image
+          src={driver.driver.image}
+          alt={driver.driver.name}
+          fill
+          sizes="320px"
+          style={{
+            objectFit: 'cover',
+            objectPosition: 'center top',
+          }}
+          quality={95}
+          priority={false}
+        />
+      </Box>
 
-      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 1 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <CardContent 
+        sx={{ 
+          flexGrow: 1, 
+          display: 'flex', 
+          flexDirection: 'column', 
+          gap: 1.5,
+          pt: 2,
+          pb: 2,
+        }}
+      >
+        {/* Rank badge */}
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Chip
-            label={`Rank: ${driver.position}`}
+            label={`#${driver.position}`}
             color="primary"
-            size="small"
-            sx={{ fontWeight: 600 }}
+            size="medium"
+            sx={{ fontWeight: 700, fontSize: '0.9rem' }}
           />
+          <Typography variant="body2" color="text.secondary">
+            {driver.wins} {driver.wins === 1 ? 'Win' : 'Wins'}
+          </Typography>
         </Box>
 
+        {/* Driver name */}
         <Typography
           variant="h6"
           component="h3"
           fontWeight="bold"
-          textAlign="center"
+          sx={{
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            fontSize: '1.1rem',
+          }}
+        >
+          {driver.driver.name}
+        </Typography>
+
+        {/* Team name */}
+        <Typography
+          variant="body2"
+          color="text.secondary"
           sx={{
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
           }}
         >
-          {driver.driver.name}
-        </Typography>
-
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          textAlign="center"
-        >
           {driver.team.name}
         </Typography>
 
-        <Box sx={{ textAlign: 'center', mt: 1 }}>
-          <Typography variant="h6" color="primary" component="span" fontWeight="bold">
+        {/* Points display */}
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            alignItems: 'baseline', 
+            gap: 0.5,
+            mt: 0.5,
+          }}
+        >
+          <Typography variant="h5" color="primary" fontWeight="bold">
             {driver.points || 0}
           </Typography>
-          <Typography variant="body2" color="text.secondary" component="span" ml={1}>
-            Points
+          <Typography variant="body2" color="text.secondary">
+            points
           </Typography>
         </Box>
 
+        {/* Action buttons */}
         {(onCompare1Click || onCompare2Click) && (
-          <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center', mt: 'auto' }}>
+          <Box sx={{ display: 'flex', gap: 1, mt: 'auto', pt: 1 }}>
             {onCompare1Click && (
               <Button
                 variant="outlined"
                 size="small"
                 onClick={onCompare1Click}
                 startIcon={<CompareArrows />}
+                fullWidth
               >
                 Compare 1
               </Button>
@@ -130,6 +177,7 @@ export default function DriverCard({
                 size="small"
                 onClick={onCompare2Click}
                 startIcon={<CompareArrows sx={{ transform: 'rotate(180deg)' }} />}
+                fullWidth
               >
                 Compare 2
               </Button>
