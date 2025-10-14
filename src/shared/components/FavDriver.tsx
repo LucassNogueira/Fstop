@@ -67,28 +67,43 @@ export default function FavDriver() {
                   rel="noopener noreferrer"
                   style={{ textDecoration: 'none' }}
                 >
-                  <img
-                    src={userDoc.favDriver.image}
-                    alt={userDoc.favDriver.name}
-                    style={{
-                      maxWidth: '240px',
-                      maxHeight: '280px',
-                      width: 'auto',
-                      height: 'auto',
-                      objectFit: 'contain',
-                      transition: 'transform 0.2s',
-                      cursor: 'pointer',
+                  <Box
+                    sx={{
+                      border: 3,
+                      borderColor: 'primary.main',
+                      borderRadius: 2,
+                      p: 1.5,
+                      backgroundColor: 'white',
+                      boxShadow: 2,
+                      transition: 'all 0.2s',
+                      '&:hover': {
+                        transform: 'scale(1.05)',
+                        boxShadow: 4,
+                        borderColor: 'primary.dark',
+                      },
                     }}
-                    loading="lazy"
-                    onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                    onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                  />
+                  >
+                    <img
+                      src={userDoc.favDriver.image}
+                      alt={userDoc.favDriver.name}
+                      style={{
+                        maxWidth: '220px',
+                        maxHeight: '260px',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        display: 'block',
+                        cursor: 'pointer',
+                      }}
+                      loading="lazy"
+                    />
+                  </Box>
                 </a>
               </Box>
             )}
 
             {/* Stats Section */}
-            <Box sx={{ flex: 1, p: 4 }}>
+            <Box sx={{ flex: 1, p: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
               <Box sx={{ mb: 3 }}>
                 <Typography
                   variant="h4"
@@ -109,9 +124,9 @@ export default function FavDriver() {
                 )}
               </Box>
 
-              <Stack spacing={3}>
+              <Stack spacing={3} alignItems="center" sx={{ width: '100%' }}>
                 <Box>
-                  <Stack direction="row" spacing={2} alignItems="center">
+                  <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
                     <Box
                       sx={{
                         width: 48,
@@ -139,7 +154,7 @@ export default function FavDriver() {
                   </Stack>
                 </Box>
 
-                <Stack direction="row" spacing={4}>
+                <Stack direction="row" spacing={4} justifyContent="center">
                   <Box>
                     <Typography variant="body2" color="text.secondary" mb={0.5}>
                       Points
@@ -150,7 +165,7 @@ export default function FavDriver() {
                   </Box>
 
                   <Box>
-                    <Stack direction="row" spacing={1} alignItems="center" mb={0.5}>
+                    <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" mb={0.5}>
                       <EmojiEventsIcon sx={{ fontSize: 18, color: 'warning.main' }} />
                       <Typography variant="body2" color="text.secondary">
                         Wins
