@@ -101,32 +101,54 @@ export default function FavTeam() {
               divider={<Box sx={{ borderLeft: 1, borderColor: 'divider' }} />}
               sx={{ mt: 2 }}
             >
-              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
+              <Box sx={{ minWidth: 80, flex: 1, maxWidth: 120 }}>
                 <Typography variant="body2" color="text.secondary" mb={0.5} noWrap>
                   Base
                 </Typography>
-                <Typography variant="h4" fontWeight="bold" color="primary" noWrap sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                <Typography 
+                  fontWeight="bold" 
+                  color="primary"
+                  sx={{ 
+                    fontSize: { xs: '1.25rem', sm: '1.5rem' },
+                    lineHeight: 1.3,
+                    wordBreak: 'break-word',
+                  }}
+                >
                   {team.base || 'N/A'}
                 </Typography>
               </Box>
 
-              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
+              <Box sx={{ minWidth: 80, flex: 1, maxWidth: 120 }}>
                 <Typography variant="body2" color="text.secondary" mb={0.5} noWrap>
                   Entry
                 </Typography>
-                <Typography variant="h4" fontWeight="bold" color="primary" noWrap>
+                <Typography 
+                  fontWeight="bold" 
+                  color="primary"
+                  sx={{ 
+                    fontSize: { xs: '1.75rem', sm: '2rem' },
+                    lineHeight: 1.2,
+                  }}
+                >
                   {team.first_team_entry || 'N/A'}
                 </Typography>
               </Box>
 
-              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
+              <Box sx={{ minWidth: 80, flex: 1, maxWidth: 120 }}>
                 <Stack direction="row" spacing={0.5} alignItems="center" justifyContent="center" mb={0.5}>
                   <EmojiEventsIcon sx={{ fontSize: 16, color: 'warning.main' }} />
                   <Typography variant="body2" color="text.secondary" noWrap>
                     Titles
                   </Typography>
                 </Stack>
-                <Typography variant="h4" fontWeight="bold" color="primary" noWrap>
+                <Typography 
+                  fontWeight="bold" 
+                  color="primary"
+                  sx={{ 
+                    fontSize: { xs: '1.75rem', sm: '2rem' },
+                    lineHeight: 1.2,
+                  }}
+                >
                   {team.world_championships || 0}
                 </Typography>
               </Box>

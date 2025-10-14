@@ -34,9 +34,9 @@ export default function LoggedPage() {
                 flexWrap="wrap"
                 sx={{
                   '& > *': {
-                    flex: { xs: '1 1 100%', sm: '1 1 45%', md: '0 1 380px' },
-                    maxWidth: { xs: '100%', md: '380px' },
-                    height: '550px',
+                    flex: { xs: '1 1 100%', sm: '1 1 45%', md: '0 1 420px' },
+                    maxWidth: { xs: '100%', md: '420px' },
+                    height: '600px',
                   },
                 }}
               >

@@ -101,32 +101,55 @@ export default function FavCircuit() {
               divider={<Box sx={{ borderLeft: 1, borderColor: 'divider' }} />}
               sx={{ mt: 2 }}
             >
-              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
+              <Box sx={{ minWidth: 80, flex: 1, maxWidth: 120 }}>
                 <Stack direction="row" spacing={0.5} alignItems="center" justifyContent="center" mb={0.5}>
                   <PlaceIcon sx={{ fontSize: 16, color: 'primary.main' }} />
                   <Typography variant="body2" color="text.secondary" noWrap>
                     Location
                   </Typography>
                 </Stack>
-                <Typography variant="h4" fontWeight="bold" color="primary" noWrap sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                <Typography 
+                  fontWeight="bold" 
+                  color="primary"
+                  sx={{ 
+                    fontSize: { xs: '1.25rem', sm: '1.5rem' },
+                    lineHeight: 1.3,
+                    wordBreak: 'break-word',
+                  }}
+                >
                   {track.competition.location.country}
                 </Typography>
               </Box>
 
-              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
+              <Box sx={{ minWidth: 80, flex: 1, maxWidth: 120 }}>
                 <Typography variant="body2" color="text.secondary" mb={0.5} noWrap>
                   Laps
                 </Typography>
-                <Typography variant="h4" fontWeight="bold" color="primary" noWrap>
+                <Typography 
+                  fontWeight="bold" 
+                  color="primary"
+                  sx={{ 
+                    fontSize: { xs: '1.75rem', sm: '2rem' },
+                    lineHeight: 1.2,
+                  }}
+                >
                   {track.laps?.total || 'N/A'}
                 </Typography>
               </Box>
 
-              <Box sx={{ minWidth: 0, maxWidth: 100 }}>
+              <Box sx={{ minWidth: 80, flex: 1, maxWidth: 120 }}>
                 <Typography variant="body2" color="text.secondary" mb={0.5} noWrap>
                   Distance
                 </Typography>
-                <Typography variant="h4" fontWeight="bold" color="primary" noWrap sx={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                <Typography 
+                  fontWeight="bold" 
+                  color="primary"
+                  sx={{ 
+                    fontSize: { xs: '1.25rem', sm: '1.5rem' },
+                    lineHeight: 1.3,
+                    wordBreak: 'break-word',
+                  }}
+                >
                   {track.distance || 'N/A'}
                 </Typography>
               </Box>
