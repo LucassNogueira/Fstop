@@ -17,7 +17,6 @@ import { useAuth } from '@/shared/contexts/AuthContext';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/shared/utils/firebase';
 import { DriverStanding } from '@/shared/types/f1Types';
-import { makeF1APICall } from '@/shared/utils/axiosInstance';
 
 export default function DriversPage() {
   const { user, userDoc, setUserDoc } = useAuth();
@@ -34,30 +33,33 @@ export default function DriversPage() {
     if (!user || !db) return;
 
     try {
-      // Fetch driver details (or use cached if already fetched)
-      const response = await makeF1APICall<{ response: any[] }>({
-        url: `/drivers`,
-        method: 'GET',
-        params: { search: driver.driver.name },
-      });
-      
-      const driverDetails = response.response?.[0];
-      
-      if (!driverDetails) {
-        console.error('Driver details not found for:', driver.driver.name);
-        return;
-      }
+      // Use the driver data we already have from standings!
+      // No API call needed - we already have all the info
+      const favoriteData = {
+        id: driver.driver.id,
+        name: driver.driver.name,
+        abbr: driver.driver.abbr,
+        number: driver.driver.number,
+        image: driver.driver.image,
+        team_id: driver.team.id,
+        team_name: driver.team.name,
+        team_logo: driver.team.logo,
+        position: driver.position,
+        points: driver.points.toString(),
+        wins: driver.wins,
+        season: driver.season,
+      };
 
       const driverRef = doc(db, 'Users', user.uid);
       await updateDoc(driverRef, {
-        favDriver: driverDetails,
+        favDriver: favoriteData,
       });
 
       setUserDoc((prevState) => ({
         ...prevState!,
-        favDriver: driverDetails,
+        favDriver: favoriteData as any,
       }));
-      console.log('Favorite driver updated:', driverDetails.name);
+      console.log('Favorite driver updated (no API call!):', driver.driver.name);
     } catch (error) {
       console.error('Error setting favorite driver:', error);
     }

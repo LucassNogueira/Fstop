@@ -48,10 +48,10 @@ export default function FavDriver() {
                   }}
                 >
                   <Typography variant="body2" color="text.secondary">
-                    Career Points
+                    Championship Position
                   </Typography>
                   <Typography variant="h4" color="primary" fontWeight="bold" mt={1}>
-                    {userDoc.favDriver.career_points}
+                    P{(userDoc.favDriver as any).position || 'N/A'}
                   </Typography>
                 </Box>
 
@@ -65,19 +65,19 @@ export default function FavDriver() {
                   }}
                 >
                   <Typography variant="body2" color="text.secondary">
-                    Podiums
+                    2023 Season Points
                   </Typography>
                   <Typography variant="h4" color="primary" fontWeight="bold" mt={1}>
-                    {userDoc.favDriver.podiums}
+                    {(userDoc.favDriver as any).points || userDoc.favDriver.career_points || 'N/A'}
                   </Typography>
                 </Box>
 
                 <Box sx={{ p: 3, textAlign: 'center', flex: 1 }}>
                   <Typography variant="body2" color="text.secondary">
-                    Races Entered
+                    2023 Season Wins
                   </Typography>
                   <Typography variant="h4" color="primary" fontWeight="bold" mt={1}>
-                    {userDoc.favDriver.grands_prix_entered}
+                    {(userDoc.favDriver as any).wins || 0}
                   </Typography>
                 </Box>
               </Stack>
