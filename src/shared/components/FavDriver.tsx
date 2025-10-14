@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Box, Container, Typography, Paper, Stack } from '@mui/material';
-import Image from 'next/image';
 import { useAuth } from '@/shared/contexts/AuthContext';
 
 export default function FavDriver() {
@@ -91,6 +90,7 @@ export default function FavDriver() {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
+                  minHeight: 400,
                 }}
               >
                 <a
@@ -98,15 +98,17 @@ export default function FavDriver() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Image
+                  <img
                     src={userDoc.favDriver.image}
                     alt={userDoc.favDriver.name}
-                    width={400}
-                    height={480}
                     style={{
-                      borderRadius: '50%',
-                      objectFit: 'cover',
+                      maxWidth: '400px',
+                      maxHeight: '500px',
+                      width: 'auto',
+                      height: 'auto',
+                      objectFit: 'contain',
                     }}
+                    loading="lazy"
                   />
                 </a>
               </Box>
