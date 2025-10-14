@@ -1,34 +1,19 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Box, Typography, Paper, Stack } from '@mui/material';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 export default function FavTeam() {
   const { userDoc } = useAuth();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const paperRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (containerRef.current && paperRef.current) {
-      console.log('🏁 FAVTEAM MEASUREMENTS:');
-      console.log('  Container height:', containerRef.current.offsetHeight);
-      console.log('  Container clientHeight:', containerRef.current.clientHeight);
-      console.log('  Paper height:', paperRef.current.offsetHeight);
-      console.log('  Paper clientHeight:', paperRef.current.clientHeight);
-      console.log('  Paper scrollHeight:', paperRef.current.scrollHeight);
-      console.log('  Computed height:', window.getComputedStyle(containerRef.current).height);
-      console.log('---');
-    }
-  }, [userDoc]);
 
   if (!userDoc?.favTeam) return null;
 
   const team = userDoc.favTeam;
 
   return (
-    <Box ref={containerRef} sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Typography
         variant="h5"
         component="h2"
@@ -41,7 +26,6 @@ export default function FavTeam() {
       </Typography>
 
       <Paper 
-        ref={paperRef}
         elevation={6}
         sx={{
           overflow: 'hidden',
