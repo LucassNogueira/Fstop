@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Container, Typography, Paper, Stack } from '@mui/material';
+import { Box, Typography, Paper, Stack } from '@mui/material';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import PlaceIcon from '@mui/icons-material/Place';
 
@@ -13,28 +13,26 @@ export default function FavCircuit() {
   const track = userDoc.favTrack;
 
   return (
-    <Box sx={{ py: 4, backgroundColor: 'background.default' }}>
-      <Container maxWidth="md">
-        <Typography
-          variant="h4"
-          component="h2"
-          fontWeight="bold"
-          textAlign="center"
-          mb={3}
-          sx={{ fontSize: { xs: '1.5rem', sm: '2rem' } }}
-        >
-          Your Favorite Circuit
-        </Typography>
+    <Box>
+      <Typography
+        variant="h5"
+        component="h2"
+        fontWeight="bold"
+        textAlign="center"
+        mb={2}
+        sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' } }}
+      >
+        Favorite Circuit
+      </Typography>
 
-        <Paper 
-          elevation={6}
-          sx={{
-            overflow: 'hidden',
-            borderRadius: 3,
-            maxWidth: 600,
-            mx: 'auto',
-          }}
-        >
+      <Paper 
+        elevation={6}
+        sx={{
+          overflow: 'hidden',
+          borderRadius: 3,
+          width: '100%',
+        }}
+      >
           {/* Circuit Image Section - Full Width */}
           {track.circuit?.image && (
             <Box
@@ -132,7 +130,6 @@ export default function FavCircuit() {
             </Stack>
           </Box>
         </Paper>
-      </Container>
     </Box>
   );
 }

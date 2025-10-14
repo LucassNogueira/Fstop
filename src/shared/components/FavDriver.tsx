@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Container, Typography, Paper, Stack, Chip } from '@mui/material';
+import { Box, Typography, Paper, Stack, Chip } from '@mui/material';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
@@ -14,28 +14,26 @@ export default function FavDriver() {
   const teamName = (userDoc.favDriver as any).team_name;
 
   return (
-    <Box sx={{ py: 4, backgroundColor: 'background.default' }}>
-      <Container maxWidth="md">
-        <Typography
-          variant="h4"
-          component="h2"
-          fontWeight="bold"
-          textAlign="center"
-          mb={3}
-          sx={{ fontSize: { xs: '1.5rem', sm: '2rem' } }}
-        >
-          Your Favorite Driver
-        </Typography>
+    <Box>
+      <Typography
+        variant="h5"
+        component="h2"
+        fontWeight="bold"
+        textAlign="center"
+        mb={2}
+        sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' } }}
+      >
+        Favorite Driver
+      </Typography>
 
-        <Paper 
-          elevation={6}
-          sx={{
-            overflow: 'hidden',
-            borderRadius: 3,
-            maxWidth: 600,
-            mx: 'auto',
-          }}
-        >
+      <Paper 
+        elevation={6}
+        sx={{
+          overflow: 'hidden',
+          borderRadius: 3,
+          width: '100%',
+        }}
+      >
           {/* Image Section - Full Width */}
           {userDoc.favDriver.image && (
             <Box
@@ -150,7 +148,6 @@ export default function FavDriver() {
             </Stack>
           </Box>
         </Paper>
-      </Container>
     </Box>
   );
 }

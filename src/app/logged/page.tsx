@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Container, Stack } from '@mui/material';
 import NavBar from '@/shared/components/NavBar';
 import Footer from '@/shared/components/Footer';
 import NextRace from '@/shared/components/NextRace';
@@ -14,14 +14,51 @@ import { useAuth } from '@/shared/contexts/AuthContext';
 export default function LoggedPage() {
   const { userDoc } = useAuth();
 
+  const hasFavorites = userDoc?.favDriver || userDoc?.favTeam || userDoc?.favTrack;
+
   return (
     <>
       <NavBar />
       <Box sx={{ minHeight: '100vh', pt: 8 }}>
         <NextRace />
-        {userDoc?.favDriver && <FavDriver />}
-        {userDoc?.favTeam && <FavTeam />}
-        {userDoc?.favTrack && <FavCircuit />}
+        
+        {/* Horizontal Favorites Section */}
+        {hasFavorites && (
+          <Box sx={{ py: 4, backgroundColor: 'background.default' }}>
+            <Container maxWidth="xl">
+              <Stack
+                direction="row"
+                spacing={3}
+                justifyContent="center"
+                alignItems="flex-start"
+                flexWrap="wrap"
+                sx={{
+                  '& > *': {
+                    flex: { xs: '1 1 100%', sm: '1 1 45%', md: '0 1 380px' },
+                    maxWidth: { xs: '100%', md: '380px' },
+                  },
+                }}
+              >
+                {userDoc?.favDriver && (
+                  <Box>
+                    <FavDriver />
+                  </Box>
+                )}
+                {userDoc?.favTeam && (
+                  <Box>
+                    <FavTeam />
+                  </Box>
+                )}
+                {userDoc?.favTrack && (
+                  <Box>
+                    <FavCircuit />
+                  </Box>
+                )}
+              </Stack>
+            </Container>
+          </Box>
+        )}
+
         <NewsCards />
       </Box>
       <Footer />

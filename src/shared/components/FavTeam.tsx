@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Container, Typography, Paper, Stack } from '@mui/material';
+import { Box, Typography, Paper, Stack } from '@mui/material';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
@@ -13,28 +13,26 @@ export default function FavTeam() {
   const team = userDoc.favTeam;
 
   return (
-    <Box sx={{ py: 4, backgroundColor: 'background.default' }}>
-      <Container maxWidth="md">
-        <Typography
-          variant="h4"
-          component="h2"
-          fontWeight="bold"
-          textAlign="center"
-          mb={3}
-          sx={{ fontSize: { xs: '1.5rem', sm: '2rem' } }}
-        >
-          Your Favorite Team
-        </Typography>
+    <Box>
+      <Typography
+        variant="h5"
+        component="h2"
+        fontWeight="bold"
+        textAlign="center"
+        mb={2}
+        sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem' } }}
+      >
+        Favorite Team
+      </Typography>
 
-        <Paper 
-          elevation={6}
-          sx={{
-            overflow: 'hidden',
-            borderRadius: 3,
-            maxWidth: 600,
-            mx: 'auto',
-          }}
-        >
+      <Paper 
+        elevation={6}
+        sx={{
+          overflow: 'hidden',
+          borderRadius: 3,
+          width: '100%',
+        }}
+      >
           {/* Logo Section - Full Width */}
           {team.logo && (
             <Box
@@ -131,7 +129,6 @@ export default function FavTeam() {
             </Stack>
           </Box>
         </Paper>
-      </Container>
     </Box>
   );
 }
