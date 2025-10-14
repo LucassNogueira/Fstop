@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Typography, Paper, Stack, Chip } from '@mui/material';
+import { Box, Typography, Paper, Stack } from '@mui/material';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
@@ -102,16 +102,6 @@ export default function FavDriver() {
             >
               {userDoc.favDriver.name}
             </Typography>
-            
-            {teamName && (
-              <Chip
-                label={teamName}
-                size="small"
-                color="primary"
-                variant="outlined"
-                sx={{ mb: 2 }}
-              />
-            )}
 
             <Stack 
               direction="row" 
