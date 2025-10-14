@@ -92,12 +92,13 @@ export default function FavDriver() {
           )}
 
           {/* Stats Section - Compact */}
-          <Box sx={{ p: 3, textAlign: 'center', backgroundColor: 'background.paper', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <Box sx={{ p: 3, textAlign: 'center', backgroundColor: 'background.paper', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
             <Typography
               variant="h5"
               component="h3"
               fontWeight="bold"
               mb={1}
+          
             >
               {userDoc.favDriver.name}
             </Typography>

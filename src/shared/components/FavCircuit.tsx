@@ -84,7 +84,7 @@ export default function FavCircuit() {
           )}
 
           {/* Info Section - Compact */}
-          <Box sx={{ p: 3, textAlign: 'center', backgroundColor: 'background.paper', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <Box sx={{ p: 3, textAlign: 'center', backgroundColor: 'background.paper', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
             <Typography
               variant="h5"
               component="h3"
