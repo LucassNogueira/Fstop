@@ -11,8 +11,13 @@ import {
   MenuItem,
   IconButton,
   Typography,
+  ListItemIcon,
 } from '@mui/material';
-import { AccountCircle } from '@mui/icons-material';
+import { 
+  AccountCircle, 
+  Person,
+  Logout,
+} from '@mui/icons-material';
 import Image from 'next/image';
 import { useAuth } from '@/shared/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
@@ -71,6 +76,7 @@ export default function NavBar() {
                 fontWeight: 600,
                 color: 'text.primary',
                 cursor: 'pointer',
+                transition: 'color 0.2s',
                 '&:hover': { color: 'primary.main' },
               }}
             >
@@ -80,6 +86,66 @@ export default function NavBar() {
 
           {user && (
             <>
+              <Link href="/drivers" passHref style={{ textDecoration: 'none' }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: 600,
+                    color: 'text.primary',
+                    cursor: 'pointer',
+                    transition: 'color 0.2s',
+                    '&:hover': { color: 'primary.main' },
+                  }}
+                >
+                  Drivers
+                </Typography>
+              </Link>
+
+              <Link href="/teams" passHref style={{ textDecoration: 'none' }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: 600,
+                    color: 'text.primary',
+                    cursor: 'pointer',
+                    transition: 'color 0.2s',
+                    '&:hover': { color: 'primary.main' },
+                  }}
+                >
+                  Teams
+                </Typography>
+              </Link>
+
+              <Link href="/circuits" passHref style={{ textDecoration: 'none' }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: 600,
+                    color: 'text.primary',
+                    cursor: 'pointer',
+                    transition: 'color 0.2s',
+                    '&:hover': { color: 'primary.main' },
+                  }}
+                >
+                  Circuits
+                </Typography>
+              </Link>
+
+              <Link href="/news" passHref style={{ textDecoration: 'none' }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: 600,
+                    color: 'text.primary',
+                    cursor: 'pointer',
+                    transition: 'color 0.2s',
+                    '&:hover': { color: 'primary.main' },
+                  }}
+                >
+                  News
+                </Typography>
+              </Link>
+
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -104,6 +170,11 @@ export default function NavBar() {
                 }}
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
+                sx={{
+                  '& .MuiPaper-root': {
+                    minWidth: 180,
+                  },
+                }}
               >
                 <MenuItem
                   onClick={() => {
@@ -111,41 +182,17 @@ export default function NavBar() {
                     handleClose();
                   }}
                 >
+                  <ListItemIcon>
+                    <Person fontSize="small" />
+                  </ListItemIcon>
                   Profile
                 </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    router.push('/drivers');
-                    handleClose();
-                  }}
-                >
-                  Drivers
+                <MenuItem onClick={handleLogout}>
+                  <ListItemIcon>
+                    <Logout fontSize="small" />
+                  </ListItemIcon>
+                  Logout
                 </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    router.push('/teams');
-                    handleClose();
-                  }}
-                >
-                  Teams
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    router.push('/circuits');
-                    handleClose();
-                  }}
-                >
-                  Circuits
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    router.push('/news');
-                    handleClose();
-                  }}
-                >
-                  News
-                </MenuItem>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </>
           )}
