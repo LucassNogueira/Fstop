@@ -105,7 +105,7 @@ export default function FavTeam() {
                 <Typography variant="body2" color="text.secondary" mb={0.5}>
                   Base
                 </Typography>
-                <Typography variant="h6" fontWeight="bold" color="primary">
+                <Typography variant="h4" fontWeight="bold" color="primary">
                   {team.base || 'N/A'}
                 </Typography>
               </Box>
@@ -114,7 +114,7 @@ export default function FavTeam() {
                 <Typography variant="body2" color="text.secondary" mb={0.5}>
                   First Entry
                 </Typography>
-                <Typography variant="h6" fontWeight="bold" color="primary">
+                <Typography variant="h4" fontWeight="bold" color="primary">
                   {team.first_team_entry || 'N/A'}
                 </Typography>
               </Box>
@@ -126,7 +126,7 @@ export default function FavTeam() {
                     Titles
                   </Typography>
                 </Stack>
-                <Typography variant="h6" fontWeight="bold" color="primary">
+                <Typography variant="h4" fontWeight="bold" color="primary">
                   {team.world_championships || 0}
                 </Typography>
               </Box>

@@ -99,7 +99,7 @@ export default function FavCircuit() {
               spacing={0.5} 
               alignItems="center" 
               justifyContent="center"
-              mb={2}
+              mb={1}
             >
               <PlaceIcon sx={{ fontSize: 18, color: 'primary.main' }} />
               <Typography variant="body1" color="text.secondary">
@@ -114,6 +114,15 @@ export default function FavCircuit() {
               divider={<Box sx={{ borderLeft: 1, borderColor: 'divider' }} />}
               sx={{ mt: 2 }}
             >
+              <Box>
+                <Typography variant="body2" color="text.secondary" mb={0.5}>
+                  Type
+                </Typography>
+                <Typography variant="h4" fontWeight="bold" color="primary">
+                  {track.type || 'Race'}
+                </Typography>
+              </Box>
+
               <Box>
                 <Typography variant="body2" color="text.secondary" mb={0.5}>
                   Laps
