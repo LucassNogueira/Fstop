@@ -33,7 +33,18 @@ export default function DriversPage() {
   const compare2 = findDriverByName(allDrivers, selectedDriver2 || '');
 
   const handleFavoriteClick = async (driver: DriverStanding) => {
-    if (!user || !db || !allDrivers) return;
+    if (!user) {
+      console.warn('User not logged in');
+      return;
+    }
+    if (!db) {
+      console.error('Firestore not initialized');
+      return;
+    }
+    if (!allDrivers) {
+      console.warn('Driver data not loaded yet');
+      return;
+    }
 
     try {
       // Use cached driver details instead of making an API call
@@ -53,6 +64,7 @@ export default function DriversPage() {
         ...prevState!,
         favDriver: driverDetails,
       }));
+      console.log('Favorite driver updated:', driverDetails.name);
     } catch (error) {
       console.error('Error setting favorite driver:', error);
     }

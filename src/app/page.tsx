@@ -11,10 +11,11 @@ export default function HomePage() {
 
   useEffect(() => {
     if (!loading) {
+      // Use replace instead of push for faster navigation
       if (user) {
-        router.push('/logged');
+        router.replace('/logged');
       } else {
-        router.push('/login');
+        router.replace('/login');
       }
     }
   }, [user, loading, router]);
@@ -26,9 +27,10 @@ export default function HomePage() {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
+        backgroundColor: 'background.default',
       }}
     >
-      <CircularProgress />
+      <CircularProgress color="primary" />
     </Box>
   );
 }

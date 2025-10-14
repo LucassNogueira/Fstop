@@ -27,14 +27,16 @@ export default function CircuitCard({
   return (
     <Card
       sx={{
-        width: 350,
-        height: 380,
+        width: 320,
+        minHeight: 400,
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
+        overflow: 'hidden',
         '&:hover': {
           transform: 'translateY(-4px)',
           transition: 'transform 0.2s',
+          boxShadow: 4,
         },
       }}
     >
@@ -44,8 +46,11 @@ export default function CircuitCard({
           position: 'absolute',
           top: 8,
           right: 8,
-          zIndex: 1,
+          zIndex: 2,
           backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          '&:hover': {
+            backgroundColor: 'rgba(255, 255, 255, 1)',
+          },
         }}
       >
         {isFavorite ? (
@@ -57,7 +62,7 @@ export default function CircuitCard({
 
       <CardMedia
         component="img"
-        height="180"
+        height="200"
         image={circuit.circuit.image}
         alt={circuit.competition.name}
         sx={{
@@ -67,7 +72,7 @@ export default function CircuitCard({
         }}
       />
 
-      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 1.5, pb: 2 }}>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <Chip
             label={`${circuit.laps.total} Laps`}
@@ -88,7 +93,9 @@ export default function CircuitCard({
             display: '-webkit-box',
             WebkitLineClamp: 2,
             WebkitBoxOrient: 'vertical',
-            minHeight: '3.6em',
+            lineHeight: 1.3,
+            minHeight: '2.6em',
+            fontSize: '1rem',
           }}
         >
           {circuit.competition.name}
@@ -98,16 +105,18 @@ export default function CircuitCard({
           variant="body2"
           color="text.secondary"
           textAlign="center"
+          sx={{
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
         >
-          City: {circuit.competition.location.city}
+          {circuit.competition.location.city}, {circuit.competition.location.country}
         </Typography>
 
-        <Box sx={{ textAlign: 'center' }}>
+        <Box sx={{ textAlign: 'center', mt: 'auto' }}>
           <Typography variant="body1" color="primary" component="span" fontWeight="bold">
             {circuit.distance}
-          </Typography>
-          <Typography variant="body2" color="text.secondary" component="span" ml={1}>
-            Long
           </Typography>
         </Box>
       </CardContent>

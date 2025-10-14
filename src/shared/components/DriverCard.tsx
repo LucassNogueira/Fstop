@@ -32,8 +32,8 @@ export default function DriverCard({
   return (
     <Card
       sx={{
-        width: 320,
-        height: 500,
+        width: 300,
+        height: 450,
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
@@ -65,12 +65,12 @@ export default function DriverCard({
         )}
       </IconButton>
 
-      {/* Larger, clearer image section */}
+      {/* Optimized image section for API images */}
       <Box
         sx={{
           position: 'relative',
           width: '100%',
-          height: 300,
+          height: 250,
           backgroundColor: 'grey.100',
           overflow: 'hidden',
         }}
@@ -79,12 +79,12 @@ export default function DriverCard({
           src={driver.driver.image}
           alt={driver.driver.name}
           fill
-          sizes="320px"
+          sizes="300px"
           style={{
-            objectFit: 'cover',
-            objectPosition: 'center top',
+            objectFit: 'contain',
+            objectPosition: 'center',
           }}
-          quality={95}
+          quality={100}
           priority={false}
         />
       </Box>

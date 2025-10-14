@@ -22,7 +22,14 @@ export default function CircuitsPage() {
   const { data: circuits, isLoading, error } = useGetRaces(2023, 'race');
 
   const handleFavoriteClick = async (circuit: Race) => {
-    if (!user || !db) return;
+    if (!user) {
+      console.warn('User not logged in');
+      return;
+    }
+    if (!db) {
+      console.error('Firestore not initialized');
+      return;
+    }
 
     try {
       const circuitRef = doc(db, 'Users', user.uid);
@@ -34,6 +41,7 @@ export default function CircuitsPage() {
         ...prevState!,
         favTrack: circuit,
       }));
+      console.log('Favorite circuit updated:', circuit.competition.name);
     } catch (error) {
       console.error('Error setting favorite circuit:', error);
     }
