@@ -44,18 +44,38 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !auth) return;
+    if (typeof window === 'undefined' || !auth) {
+      setLoading(false);
+      return;
+    }
+
+    // Set a maximum timeout for auth initialization
+    const timeoutId = setTimeout(() => {
+      if (loading) {
+        console.warn('Auth initialization timeout - continuing without user');
+        setLoading(false);
+      }
+    }, 5000); // 5 second maximum timeout
 
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      clearTimeout(timeoutId); // Clear timeout since auth resolved
       setUser(currentUser);
 
       if (currentUser && db) {
         try {
+          // Fetch user document with a timeout
           const docRef = doc(db, 'Users', currentUser.uid);
-          const docSnap = await getDoc(docRef);
+          const docPromise = getDoc(docRef);
+          const timeoutPromise = new Promise<null>((resolve) => 
+            setTimeout(() => resolve(null), 3000)
+          );
           
-          if (docSnap.exists()) {
-            setUserDoc(docSnap.data() as UserDocument);
+          const result = await Promise.race([docPromise, timeoutPromise]);
+          
+          if (result && result.exists()) {
+            setUserDoc(result.data() as UserDocument);
+          } else if (!result) {
+            console.warn('User document fetch timeout');
           }
         } catch (error) {
           console.error('Error fetching user document:', error);
@@ -67,7 +87,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setLoading(false);
     });
 
-    return () => unsubscribe();
+    return () => {
+      clearTimeout(timeoutId);
+      unsubscribe();
+    };
   }, []);
 
   return (
